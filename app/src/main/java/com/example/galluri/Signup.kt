@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.View
 import android.widget.TextView
 
 class Signup : AppCompatActivity() {
@@ -17,17 +18,20 @@ class Signup : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup)
 
+        // Underline Terms & Privacy Policy
         val terms = findViewById<TextView>(R.id.terms_link)
         terms.paintFlags = terms.paintFlags or Paint.UNDERLINE_TEXT_FLAG
 
-        val login_link = findViewById<TextView>(R.id.login_link);
-        login_link.setOnClickListener {
-
-            val intent = Intent(this@Signup, Login::class.java)
-            startActivity(intent)
-        }
-
+        loginClick()
     }
 
+    private fun loginClick() {
+        val loginLink = findViewById<TextView>(R.id.login_link)
+        loginLink.setOnClickListener {
+            val intent = Intent(this@Signup, Login::class.java)
+            startActivity(intent)
+            finish()
+        }
+    }
 
 }

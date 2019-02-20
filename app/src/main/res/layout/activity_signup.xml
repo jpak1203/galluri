@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient"
+    android:background="@drawable/background_gradient"
     tools:context=".Signup">
 
     <ImageView
@@ -51,7 +51,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:autofillHints="email"
-        android:background="@drawable/signup_border"
+        android:background="@drawable/credential_input_border"
         android:ems="10"
         android:fontFamily="@font/helveticaneue"
         android:gravity="center|start"
@@ -78,7 +78,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:autofillHints="password"
-        android:background="@drawable/signup_border"
+        android:background="@drawable/credential_input_border"
         android:ems="10"
         android:fontFamily="@font/helveticaneue"
         android:gravity="center|start"
@@ -105,7 +105,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:autofillHints="confirm password"
-        android:background="@drawable/signup_border"
+        android:background="@drawable/credential_input_border"
         android:ems="10"
         android:fontFamily="@font/helveticaneue"
         android:gravity="center|start"
@@ -132,6 +132,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
+        android:elevation="10dp"
         android:background="@drawable/credential_button"
         android:fontFamily="@font/helveticaneue"
         android:gravity="center"
