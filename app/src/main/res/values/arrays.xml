@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <integer-array name="colde_imgs">
+        <item>@drawable/colde_with_dog</item>
+        <item>@drawable/dda77bdc532ea07cfb4bb1698446e6a8653df0d5</item>
+        <item>@drawable/df82927956eb01f77db99f578609e595</item>
+        <item>@drawable/download</item>
+        <item>@drawable/fb_img_1538999289690</item>
+        <item>@drawable/images</item>
+        <item>@drawable/offonoff</item>
+    </integer-array>
+
+</resources>
