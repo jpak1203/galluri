@@ -17,6 +17,7 @@ class MainFeed : AppCompatActivity() {
 
         pagerAdapter = MainPagerAdapter(supportFragmentManager)
         viewPager.adapter = pagerAdapter
+        viewPager.setCurrentItem(1)
 
     }
 
