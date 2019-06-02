@@ -34,7 +34,7 @@ class Login : AppCompatActivity() {
         })
 
         // Press Login Button to Login
-        val loginButton = findViewById<Button>(R.id.login_button)
+        val loginButton = findViewById<Button>(R.id.complete_signup)
         loginButton.setOnClickListener {
             loginClick()
         }

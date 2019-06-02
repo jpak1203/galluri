@@ -97,7 +97,7 @@
         app:layout_constraintTop_toBottomOf="@+id/username_input" />
 
     <Button
-        android:id="@+id/login_button"
+        android:id="@+id/complete_signup"
         style="@style/Widget.AppCompat.Button"
         android:layout_width="124dp"
         android:layout_height="43dp"
@@ -255,7 +255,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_button" />
+        app:layout_constraintTop_toBottomOf="@+id/complete_signup" />
 
     <TextView
         android:id="@+id/invalidLogin"

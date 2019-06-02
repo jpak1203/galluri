@@ -1,21 +1,43 @@
 package com.example.galluri
 
 import android.content.Context
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import com.google.firebase.auth.FirebaseAuth
 
 class SettingFragment : Fragment() {
 
+    private lateinit var auth: FirebaseAuth
+
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
+
+        auth = FirebaseAuth.getInstance()
+
         // Inflate the layout for this fragment
         val rootView = inflater.inflate(R.layout.fragment_setting, container, false)
 
+        val logOut = rootView.findViewById<Button>(R.id.logout_button)
+        logOut.setOnClickListener {
+            signOut()
+        }
+
         return rootView
+    }
+
+    private fun signOut() {
+        FirebaseAuth.getInstance().signOut()
+
+        var intent = Intent(context, Login::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        startActivity(intent)
     }
 
     companion object {

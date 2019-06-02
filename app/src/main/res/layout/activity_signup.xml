@@ -42,7 +42,7 @@
         app:layout_constraintTop_toBottomOf="@+id/galluri_icon" />
 
     <EditText
-        android:id="@+id/username_input"
+        android:id="@+id/email_input"
         android:layout_width="250sp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -93,7 +93,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username_input" />
+        app:layout_constraintTop_toBottomOf="@+id/email_input" />
 
     <EditText
         android:id="@+id/confirmpassword_input"
@@ -123,7 +123,7 @@
         app:layout_constraintTop_toBottomOf="@+id/password_input" />
 
     <Button
-        android:id="@+id/login_button"
+        android:id="@+id/complete_signup"
         style="@style/Widget.AppCompat.Button"
         android:layout_width="124dp"
         android:layout_height="43dp"
@@ -158,7 +158,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_button">
+        app:layout_constraintTop_toBottomOf="@+id/complete_signup">
 
         <TextView
             android:id="@+id/signup_text"
