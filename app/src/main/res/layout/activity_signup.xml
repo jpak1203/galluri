@@ -141,6 +141,7 @@
         android:textAllCaps="false"
         android:textColor="#E5E5E5"
         android:textSize="14sp"
+        android:clickable="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/confirmpassword_input" />

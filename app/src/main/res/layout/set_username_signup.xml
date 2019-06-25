@@ -47,7 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:background="@drawable/credential_input_border"
@@ -64,7 +64,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/character_max" />
 
     <Button
         android:id="@+id/complete_signup"
@@ -91,7 +91,7 @@
         app:layout_constraintTop_toBottomOf="@+id/username_input" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/createUsername_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -104,5 +104,73 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/galluri" />
+
+    <TextView
+        android:id="@+id/invalid_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:text="Username taken"
+        android:textSize="10sp"
+        android:visibility="gone"
+        android:textColor="#BD3535"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createUsername_text" />
+
+    <TextView
+        android:id="@+id/character_min"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:text="Must be at least 5 characters long"
+        android:textSize="10sp"
+        android:visibility="gone"
+        android:textColor="#BD3535"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/invalid_username" />
+
+    <TextView
+        android:id="@+id/character_restriction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:text="Can only contain letters, numbers, periods, and underscores"
+        android:textSize="10sp"
+        android:visibility="gone"
+        android:textColor="#BD3535"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/character_min" />
+
+    <TextView
+        android:id="@+id/character_max"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:text="Must not be longer than 15 characters"
+        android:textSize="10sp"
+        android:visibility="gone"
+        android:textColor="#BD3535"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/character_restriction" />
 
 </android.support.constraint.ConstraintLayout>

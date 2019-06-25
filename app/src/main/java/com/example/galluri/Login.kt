@@ -10,14 +10,24 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 class Login : AppCompatActivity() {
 
-    var auth: FirebaseAuth = FirebaseAuth.getInstance()
+    private lateinit var auth: FirebaseAuth
+    private lateinit var db: FirebaseDatabase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        Log.d("Authentication", "Login page")
+
+        auth = FirebaseAuth.getInstance()
+        db = FirebaseDatabase.getInstance()
 
         // Underline Terms & Privacy Policy
         val terms = findViewById<TextView>(R.id.terms_link)
@@ -55,17 +65,19 @@ class Login : AppCompatActivity() {
     private fun loginClick() {
 
         val email = findViewById<TextView>(R.id.username_input)
+        val emailText = email.text.toString()
         val password = findViewById<TextView>(R.id.password_input)
         val invalid = findViewById<TextView>(R.id.invalidLogin)
 
-        auth.signInWithEmailAndPassword(email.text.toString(), password.text.toString()).addOnCompleteListener(this) { task ->
+        auth.signInWithEmailAndPassword(emailText, password.text.toString()).addOnCompleteListener(this) { task ->
             if (task.isSuccessful) {
-                var intent = Intent(this, MainFeed::class.java)
-                intent.putExtra("id", auth.currentUser?.email)
-                startActivity(intent)
-                finish()
+                Log.d("Authentication", "Login success")
+
+                //TODO: continue making fail-safe for if username does not exist for email that logged in due to unforseen circumstances
+                checkUsername(auth.currentUser!!.uid)
+
             } else {
-                Log.d("ERROR", "Login fail")
+                Log.d("Authentication", "Login fail")
                 invalid.visibility = View.VISIBLE
                 email.setBackgroundResource(R.drawable.credential_input_fail)
                 password.setBackgroundResource(R.drawable.credential_input_fail)
@@ -73,4 +85,41 @@ class Login : AppCompatActivity() {
             }
         }
     }
+
+    private fun checkUsername(uid: String) {
+        Log.d("Authentication", uid)
+
+        val usernameCheck = db.getReference("Users").child(uid)
+
+        usernameCheck.addValueEventListener(object: ValueEventListener {
+            override fun onDataChange(p0: DataSnapshot) {
+                Log.d("Authentication", p0.child("username").value.toString())
+                if (p0.child("username").value == null) {
+                    Log.d("Authentication", "Username missing")
+                    var intent = Intent(this@Login, SetUsername::class.java)
+                    intent.putExtra("id", auth.currentUser?.email)
+                    startActivity(intent)
+                    finish()
+                } else {
+                    Log.d("Authentication", "Username " + p0.child("username").value.toString() + " found")
+                    var intent = Intent(this@Login, MainFeed::class.java)
+                    intent.putExtra("id", auth.currentUser?.email)
+                    startActivity(intent)
+                    finish()
+                }
+            }
+
+            override fun onCancelled(p0: DatabaseError) {
+                Log.d("Authentication", p0.message)
+            }
+        })
+
+    }
+
+
+/*    private fun updateNewUser(uid: String, username: String, email: String)  {
+        db.getReference("Usernames").setValue(username)
+        db.getReference("Users").child(uid).child(username).setValue(username)
+    }
+*/
 }

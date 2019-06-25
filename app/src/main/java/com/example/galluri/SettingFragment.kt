@@ -38,6 +38,7 @@ class SettingFragment : Fragment() {
         var intent = Intent(context, Login::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         startActivity(intent)
+        this.activity!!.finish()
     }
 
     companion object {
