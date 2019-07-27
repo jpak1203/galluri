@@ -1,6 +1,9 @@
 package com.example.galluri
 
+import android.content.Intent
+import android.support.v4.content.ContextCompat.startActivity
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,6 +41,12 @@ class FeedAdapter : RecyclerView.Adapter<PostViewHolder>() {
         holder.v.post_img?.setImageResource(imgs)
         holder.v.profile_img?.setImageResource(R.drawable.dda77bdc532ea07cfb4bb1698446e6a8653df0d5)
         holder.v.description_pic?.setImageResource(R.drawable.dda77bdc532ea07cfb4bb1698446e6a8653df0d5)
+
+        holder.v.description_summary?.setOnClickListener {
+            var intent = Intent(holder.itemView.context, PostDetails::class.java)
+            holder.itemView.context.startActivity(intent)
+            Log.d("title", holder.v.description_summary.text.toString())
+        }
     }
 }
 
