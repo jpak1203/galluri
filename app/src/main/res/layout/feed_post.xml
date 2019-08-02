@@ -8,7 +8,7 @@
 
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/username_layout"
+        android:id="@+id/user_details_layout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/profile_img"
+            android:id="@+id/propic_details"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:adjustViewBounds="true"
@@ -27,7 +27,7 @@
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
-            android:id="@+id/username"
+            android:id="@+id/username_details"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -38,7 +38,7 @@
             android:textStyle="bold"
             app:fontFamily="@font/helveticaneue"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/profile_img"
+            app:layout_constraintStart_toEndOf="@+id/propic_details"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.6" />
     </android.support.constraint.ConstraintLayout>
@@ -53,11 +53,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username_layout"
+        app:layout_constraintTop_toBottomOf="@+id/user_details_layout"
         app:srcCompat="@drawable/colde" />
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/description_layout"
+        android:id="@+id/description_details_layout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -154,6 +154,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/description_layout" />
+        app:layout_constraintTop_toBottomOf="@+id/description_details_layout" />
 
 </android.support.constraint.ConstraintLayout>

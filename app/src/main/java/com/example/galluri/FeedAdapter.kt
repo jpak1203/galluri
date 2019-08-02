@@ -1,22 +1,17 @@
 package com.example.galluri
 
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.feed_post.view.*
-import java.io.ByteArrayOutputStream
-import android.os.Bundle
-
 
 
 class FeedAdapter : RecyclerView.Adapter<PostViewHolder>() {
 
-    //todo DATABASE FOR POST DETAILS
+    //todo: DATABASE FOR POST DETAILS
     val colde_imgs = listOf(R.drawable.colde_with_dog, R.drawable.offonoff, R.drawable.colde, R.drawable.df82927956eb01f77db99f578609e595, R.drawable.download,
             R.drawable.fb_img_1538999289690, R.drawable.images)
     val colde_description = listOf("samna <3", "w/ 0channel", "a merry wavy new years~", "omw", "my new wave album dropped", "happy birthday", "your dog loves you ft. crush")
@@ -39,12 +34,12 @@ class FeedAdapter : RecyclerView.Adapter<PostViewHolder>() {
         val descs = colde_description.get(pos)
         val dates = colde_dates.get(pos)
 
-        holder.v.username.text = "wavycolde"
+        holder.v.username_details.text = "wavycolde"
         holder.v.description_username.text = "wavycolde"
         holder.v.description_summary.setText(descs)
         holder.v.description_date.setText(dates)
         holder.v.post_img.setImageResource(imgs)
-        holder.v.profile_img.setImageResource(R.drawable.dda77bdc532ea07cfb4bb1698446e6a8653df0d5)
+        holder.v.propic_details.setImageResource(R.drawable.dda77bdc532ea07cfb4bb1698446e6a8653df0d5)
         holder.v.description_pic.setImageResource(R.drawable.dda77bdc532ea07cfb4bb1698446e6a8653df0d5)
 
         holder.v.description_summary?.setOnClickListener {

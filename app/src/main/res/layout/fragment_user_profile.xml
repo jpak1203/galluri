@@ -167,7 +167,7 @@
             app:srcCompat="@drawable/dda77bdc532ea07cfb4bb1698446e6a8653df0d5" />
 
         <TextView
-            android:id="@+id/username"
+            android:id="@+id/username_details"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
@@ -198,7 +198,7 @@
             app:fontFamily="@font/georgia"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/username" />
+            app:layout_constraintTop_toBottomOf="@+id/username_details" />
 
 
         <android.support.constraint.ConstraintLayout

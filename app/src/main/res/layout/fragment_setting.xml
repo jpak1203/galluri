@@ -234,7 +234,7 @@
 
 
         <android.support.constraint.ConstraintLayout
-            android:id="@+id/username_layout"
+            android:id="@+id/user_details_layout"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -247,7 +247,7 @@
             app:layout_constraintTop_toBottomOf="@+id/display_name_layout">
 
             <TextView
-                android:id="@+id/username"
+                android:id="@+id/username_details"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="30dp"
@@ -275,7 +275,7 @@
 
 
         <android.support.constraint.ConstraintLayout
-            android:id="@+id/description_layout"
+            android:id="@+id/description_details_layout"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -285,10 +285,10 @@
             android:layout_marginRight="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/username_layout">
+            app:layout_constraintTop_toBottomOf="@+id/user_details_layout">
 
             <TextView
-                android:id="@+id/description"
+                android:id="@+id/description_details"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="30dp"
@@ -326,7 +326,7 @@
             android:layout_marginRight="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/description_layout">
+            app:layout_constraintTop_toBottomOf="@+id/description_details_layout">
 
             <TextView
                 android:id="@+id/allures"
