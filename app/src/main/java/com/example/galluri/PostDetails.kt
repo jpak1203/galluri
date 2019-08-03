@@ -1,17 +1,15 @@
 package com.example.galluri
 
-import android.annotation.SuppressLint
 import android.app.ActivityOptions
-import android.support.v7.app.AppCompatActivity
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
+import android.util.Log
+import android.view.MotionEvent
 import android.widget.ImageView
 import android.widget.ScrollView
 import android.widget.TextView
-import android.content.Intent
-import android.util.Log
-import android.widget.Toast
-import android.view.MotionEvent
-import android.view.View
 
 
 class PostDetails : AppCompatActivity() {
@@ -41,6 +39,7 @@ class PostDetails : AppCompatActivity() {
 
         var view = findViewById<ScrollView>(R.id.details_scroller)
         view.setOnTouchListener { view, event -> onTouchEvent(event) }
+
     }
 
 
@@ -55,8 +54,16 @@ class PostDetails : AppCompatActivity() {
                 // if right to left sweep event on screen
                 Log.d("swipe", "" + (x1-x2))
                 if (x1 < x2 && (x2-x1) > 500) {
-                    val i = Intent(this@PostDetails, MainFeed::class.java)
-                    startActivity(i)
+                    // Check if we're running on Android 5.0 or higher
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        var intent = Intent(this@PostDetails, MainFeed::class.java)
+                        startActivity(intent)
+                        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+                    } else {
+                        // Swap without transition
+                        var intent = Intent(this@PostDetails, MainFeed::class.java)
+                        startActivity(intent)
+                    }
                 }
             }
         }
