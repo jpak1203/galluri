@@ -40,6 +40,7 @@ class Signup : AppCompatActivity() {
         
         // Check if currentUser exists
         if (currentUser != null) {
+
             val uidQuery = db.reference.child("Users")
 
             uidQuery.addListenerForSingleValueEvent(object: ValueEventListener {
@@ -48,6 +49,7 @@ class Signup : AppCompatActivity() {
                 }
 
                 override fun onDataChange(p0: DataSnapshot) {
+                    Log.d("Authentication", currentUser.uid)
                     if (p0.child(currentUser.uid).value != null) {
                         Log.d("Authentication", "User ${p0.child(currentUser.uid).child("username").value.toString()}: logging in")
                         var intent = Intent(this@Signup, MainFeed::class.java)
@@ -62,8 +64,6 @@ class Signup : AppCompatActivity() {
             })
         } else {
             setContentView(R.layout.activity_signup)
-
-            Log.d("Authentication", "OnCreate triggered")
 
             confirmPassword()
 
@@ -96,8 +96,8 @@ class Signup : AppCompatActivity() {
             return
         }
 
-        val email = findViewById<TextView>(R.id.email_input).text.toString()
-        val password = findViewById<TextView>(R.id.password_input).text.toString()
+        val email = findViewById<TextView>(R.id.email_signup_input).text.toString()
+        val password = findViewById<TextView>(R.id.password_signup_input).text.toString()
 
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this) { task ->
             if (task.isSuccessful) {
@@ -117,9 +117,9 @@ class Signup : AppCompatActivity() {
 
 
     private fun validateForm(): Boolean {
-        val email = findViewById<TextView>(R.id.email_input)
-        val password = findViewById<TextView>(R.id.password_input)
-        val confirm = findViewById<TextView>(R.id.confirmpassword_input)
+        val email = findViewById<TextView>(R.id.email_signup_input)
+        val password = findViewById<TextView>(R.id.password_signup_input)
+        val confirm = findViewById<TextView>(R.id.confirmpassword_signup_input)
 
         var valid = true
 
@@ -150,8 +150,8 @@ class Signup : AppCompatActivity() {
 
 
     private fun confirmPassword() {
-        val password = findViewById<TextView>(R.id.password_input)
-        val confirm = findViewById<TextView>(R.id.confirmpassword_input)
+        val password = findViewById<TextView>(R.id.password_signup_input)
+        val confirm = findViewById<TextView>(R.id.confirmpassword_signup_input)
 
         val signupButton = findViewById<Button>(R.id.complete_signup)
 

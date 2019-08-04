@@ -10,6 +10,9 @@ import android.view.WindowManager
 
 class NewPostFragment : Fragment() {
 
+    //todo: Database Implementation
+    //todo: Upload picture and update placeholder
+    //todo: Fix text-box appearance when creating title and description
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment

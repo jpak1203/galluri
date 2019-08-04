@@ -19,6 +19,8 @@ class UserProfileFragment : Fragment() {
         val recyclerView =  rootView.findViewById<RecyclerView>(R.id.grid_layout)
 
 
+        //todo: Buttons for other views
+        //todo: ability to create new zine
         val gridView = rootView.findViewById<ImageButton>(R.id.gridView)
         val zineView = rootView.findViewById<ImageButton>(R.id.zineView)
         val starView = rootView.findViewById<ImageButton>(R.id.starView)

@@ -1,15 +1,12 @@
 package com.example.galluri
 
 import android.os.Bundle
-import android.os.Debug
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 
 
 class FeedFragment : Fragment() {
@@ -17,8 +14,8 @@ class FeedFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        val rootView = inflater.inflate(R.layout.fragment_feed, container, false)
-        val recyclerView =  rootView.findViewById<RecyclerView>(R.id.feed)
+        val rootView = inflater.inflate(R.layout.fragment_main_feed, container, false)
+        val recyclerView =  rootView.findViewById<RecyclerView>(R.id.main_feed)
 
         val layoutManager = LinearLayoutManager(activity)
         recyclerView.layoutManager = layoutManager

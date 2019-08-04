@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/user_profile_frame"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".UserProfileFragment">
 
     <android.support.constraint.ConstraintLayout
+        android:id="@+id/user_profile_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#EBEBEB"
@@ -83,22 +85,21 @@
             android:id="@+id/grid_layout"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+            app:layout_constraintTop_toBottomOf="@id/profile_view_buttons_layout" />
 
         <android.support.constraint.ConstraintLayout
-            android:id="@+id/constraintLayout"
+            android:id="@+id/profile_view_buttons_layout"
             android:layout_width="0dp"
             android:layout_height="40dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2">
+            app:layout_constraintTop_toBottomOf="@id/profile_description">
 
             <ImageButton
                 android:id="@+id/gridView"
@@ -167,7 +168,7 @@
             app:srcCompat="@drawable/dda77bdc532ea07cfb4bb1698446e6a8653df0d5" />
 
         <TextView
-            android:id="@+id/username_details"
+            android:id="@+id/username_header"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
@@ -183,7 +184,7 @@
             app:layout_constraintTop_toBottomOf="@+id/propic" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/profile_description"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
@@ -198,11 +199,11 @@
             app:fontFamily="@font/georgia"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/username_details" />
+            app:layout_constraintTop_toBottomOf="@+id/username_header" />
 
 
         <android.support.constraint.ConstraintLayout
-            android:id="@+id/swipe_to_right_activity"
+            android:id="@+id/to_right_settings_activity"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:background="@drawable/swipe_icon_background"
@@ -212,7 +213,7 @@
 
 
             <ImageView
-                android:id="@+id/profile_pic"
+                android:id="@+id/right_arrow"
                 android:layout_width="15dp"
                 android:layout_height="20dp"
                 android:layout_marginTop="5dp"
@@ -223,7 +224,7 @@
                 app:srcCompat="@drawable/ic_arrow_right_icon" />
 
             <ImageView
-                android:id="@+id/right_arrow"
+                android:id="@+id/to_settings"
                 android:layout_width="18dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="3dp"
@@ -238,7 +239,7 @@
         </android.support.constraint.ConstraintLayout>
 
         <android.support.constraint.ConstraintLayout
-            android:id="@+id/swipe_to_left_activity"
+            android:id="@+id/to_left_main_activity"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:background="@drawable/swipe_icon_background"
@@ -248,7 +249,7 @@
 
 
             <ImageView
-                android:id="@+id/new_post"
+                android:id="@+id/to_main_feed"
                 android:layout_width="18dp"
                 android:layout_height="20dp"
                 android:layout_marginTop="5dp"

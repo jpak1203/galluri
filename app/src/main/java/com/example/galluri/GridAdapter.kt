@@ -9,6 +9,7 @@ import kotlinx.android.synthetic.main.grid_cell.view.*
 
 class GridAdapter : RecyclerView.Adapter<GridViewHolder>() {
 
+    //todo: Database Implementation
     val colde_imgs = listOf(R.drawable.colde_with_dog, R.drawable.offonoff, R.drawable.colde, R.drawable.df82927956eb01f77db99f578609e595, R.drawable.download,
             R.drawable.fb_img_1538999289690, R.drawable.images)
 
@@ -31,7 +32,7 @@ class GridAdapter : RecyclerView.Adapter<GridViewHolder>() {
     override fun onBindViewHolder(holder: GridViewHolder, pos: Int) {
         val imgs = colde_imgs.get(pos)
 
-        holder.v.post_pic?.setImageResource(imgs)
+        holder.v.post_grid_cell?.setImageResource(imgs)
 
     }
 }

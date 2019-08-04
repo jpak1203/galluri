@@ -2,6 +2,7 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/set_username_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_gradient"
@@ -42,7 +43,7 @@
         app:layout_constraintTop_toBottomOf="@+id/galluri_icon" />
 
     <EditText
-        android:id="@+id/username_input"
+        android:id="@+id/set_username_input"
         android:layout_width="250sp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -67,7 +68,7 @@
         app:layout_constraintTop_toBottomOf="@+id/character_max" />
 
     <Button
-        android:id="@+id/complete_signup"
+        android:id="@+id/complete_username_signup"
         style="@style/Widget.AppCompat.Button"
         android:layout_width="124dp"
         android:layout_height="43dp"
@@ -88,7 +89,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username_input" />
+        app:layout_constraintTop_toBottomOf="@+id/set_username_input" />
 
     <TextView
         android:id="@+id/createUsername_text"
@@ -115,9 +116,9 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:text="Username taken"
+        android:textColor="#BD3535"
         android:textSize="10sp"
         android:visibility="gone"
-        android:textColor="#BD3535"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/createUsername_text" />
@@ -132,9 +133,9 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:text="Must be at least 5 characters long"
+        android:textColor="#BD3535"
         android:textSize="10sp"
         android:visibility="gone"
-        android:textColor="#BD3535"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/invalid_username" />
@@ -149,9 +150,9 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:text="Can only contain letters, numbers, periods, and underscores"
+        android:textColor="#BD3535"
         android:textSize="10sp"
         android:visibility="gone"
-        android:textColor="#BD3535"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/character_min" />
@@ -166,9 +167,9 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:text="Must not be longer than 15 characters"
+        android:textColor="#BD3535"
         android:textSize="10sp"
         android:visibility="gone"
-        android:textColor="#BD3535"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/character_restriction" />

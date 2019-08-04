@@ -1,6 +1,5 @@
 package com.example.galluri
 
-import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -24,21 +23,21 @@ class PostDetails : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_post_details)
 
-        var username = getIntent().getExtras().getString("username")
-        var title = getIntent().getExtras().getString("title")
-        var date = getIntent().getExtras().getString("date")
-        var image = getIntent().getExtras().getInt("image")
-        var propic = getIntent().getExtras().getInt("propic")
+        var username = intent.extras.getString("username")
+        var title = intent.extras.getString("title")
+        var date = intent.extras.getString("date")
+        var image = intent.extras.getInt("image")
+        var propic = intent.extras.getInt("propic")
 
-        findViewById<TextView>(R.id.username_details).setText(username)
-        findViewById<TextView>(R.id.title_details).setText(title)
-        findViewById<TextView>(R.id.date_details).setText(date)
-        findViewById<TextView>(R.id.description_details).setText("test description")
-        findViewById<ImageView>(R.id.post_img_details).setImageResource(image)
-        findViewById<ImageView>(R.id.propic_details).setImageResource(propic)
+        findViewById<TextView>(R.id.username_header).setText(username)
+        findViewById<TextView>(R.id.post_title).setText(title)
+        findViewById<TextView>(R.id.post_date).setText(date)
+        findViewById<TextView>(R.id.post_description).setText("test description")
+        findViewById<ImageView>(R.id.post_image).setImageResource(image)
+        findViewById<ImageView>(R.id.propic_header).setImageResource(propic)
 
         var view = findViewById<ScrollView>(R.id.details_scroller)
-        view.setOnTouchListener { view, event -> onTouchEvent(event) }
+        view.setOnTouchListener { _ , event -> onTouchEvent(event) }
 
     }
 

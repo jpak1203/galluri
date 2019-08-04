@@ -2,6 +2,7 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/login_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_gradient"
@@ -43,7 +44,7 @@
         app:layout_constraintTop_toBottomOf="@+id/galluri_icon" />
 
     <EditText
-        android:id="@+id/username_input"
+        android:id="@+id/username_login_input"
         android:layout_width="250sp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -70,7 +71,7 @@
         app:layout_constraintTop_toBottomOf="@+id/invalidLogin" />
 
     <EditText
-        android:id="@+id/password_input"
+        android:id="@+id/password_login_input"
         android:layout_width="250sp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -94,10 +95,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username_input" />
+        app:layout_constraintTop_toBottomOf="@+id/username_login_input" />
 
     <Button
-        android:id="@+id/complete_signup"
+        android:id="@+id/complete_login"
         style="@style/Widget.AppCompat.Button"
         android:layout_width="124dp"
         android:layout_height="43dp"
@@ -106,8 +107,8 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:elevation="10dp"
         android:background="@drawable/credential_button"
+        android:elevation="10dp"
         android:fontFamily="@font/helveticaneue"
         android:gravity="center"
         android:letterSpacing="0.05"
@@ -118,10 +119,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password_input" />
+        app:layout_constraintTop_toBottomOf="@+id/password_login_input" />
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/login_layout"
+        android:id="@+id/signup_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -184,7 +185,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_layout" />
+        app:layout_constraintTop_toBottomOf="@+id/signup_layout" />
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/terms_layout"
@@ -255,7 +256,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/complete_signup" />
+        app:layout_constraintTop_toBottomOf="@+id/complete_login" />
 
     <TextView
         android:id="@+id/invalidLogin"
@@ -267,8 +268,8 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:text="Invalid login"
-        android:textSize="10sp"
         android:textColor="#B92B2B"
+        android:textSize="10sp"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

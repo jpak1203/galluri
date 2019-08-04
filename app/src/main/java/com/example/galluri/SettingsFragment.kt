@@ -1,8 +1,6 @@
 package com.example.galluri
 
-import android.content.Context
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -11,11 +9,12 @@ import android.view.ViewGroup
 import android.widget.Button
 import com.google.firebase.auth.FirebaseAuth
 
-class SettingFragment : Fragment() {
+class SettingsFragment : Fragment() {
 
     private lateinit var auth: FirebaseAuth
 
 
+    //todo: Database Implementation
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
@@ -53,7 +52,7 @@ class SettingFragment : Fragment() {
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance() =
-                SettingFragment().apply {
+                SettingsFragment().apply {
                 }
     }
 }

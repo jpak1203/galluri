@@ -12,7 +12,7 @@ class MainPagerAdapter(fragmentManager: FragmentManager) :
         if (position == 0) return NewPostFragment.newInstance()
         else if (position == 1) return FeedFragment.newInstance()
         else if (position == 2) return UserProfileFragment.newInstance()
-        else if (position == 3) return SettingFragment.newInstance()
+        else if (position == 3) return SettingsFragment.newInstance()
         else return FeedFragment.newInstance()
     }
 

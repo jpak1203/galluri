@@ -2,13 +2,13 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/post_layout"
+    android:id="@+id/feed_post_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/user_details_layout"
+        android:id="@+id/user_heading_layout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/propic_details"
+            android:id="@+id/propic_header"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:adjustViewBounds="true"
@@ -27,7 +27,7 @@
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
-            android:id="@+id/username_details"
+            android:id="@+id/username_header"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -38,13 +38,13 @@
             android:textStyle="bold"
             app:fontFamily="@font/helveticaneue"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/propic_details"
+            app:layout_constraintStart_toEndOf="@+id/propic_header"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.6" />
     </android.support.constraint.ConstraintLayout>
 
     <ImageView
-        android:id="@+id/post_img"
+        android:id="@+id/post_image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:maxHeight="500dp"
@@ -53,20 +53,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/user_details_layout"
+        app:layout_constraintTop_toBottomOf="@+id/user_heading_layout"
         app:srcCompat="@drawable/colde" />
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/description_details_layout"
+        android:id="@+id/description_layout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/post_img">
+        app:layout_constraintTop_toBottomOf="@+id/post_image">
 
         <ImageView
-            android:id="@+id/description_pic"
+            android:id="@+id/propic_description"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_marginStart="8dp"
@@ -82,7 +82,7 @@
             app:srcCompat="@drawable/dda77bdc532ea07cfb4bb1698446e6a8653df0d5" />
 
         <ImageView
-            android:id="@+id/star_icon"
+            android:id="@+id/star_description"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginTop="8dp"
@@ -95,21 +95,22 @@
             app:srcCompat="@drawable/ic_star_icon" />
 
         <LinearLayout
+            android:id="@+id/post_details_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:maxWidth="320dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:orientation="horizontal"
             android:gravity="bottom|center"
+            android:maxWidth="320dp"
+            android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/description_pic"
+            app:layout_constraintStart_toEndOf="@+id/propic_description"
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/description_username"
+                android:id="@+id/post_username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="username"
@@ -120,7 +121,7 @@
                 tools:layout_editor_absoluteY="17dp" />
 
             <TextView
-                android:id="@+id/description_summary"
+                android:id="@+id/post_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -128,18 +129,18 @@
                 android:text="title"
                 android:textSize="14sp"
                 app:fontFamily="@font/georgia"
-                app:layout_constraintStart_toEndOf="@+id/description_username"
+                app:layout_constraintStart_toEndOf="@+id/post_username"
                 tools:layout_editor_absoluteY="8dp" />
 
             <TextView
-                android:id="@+id/description_date"
+                android:id="@+id/post_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginLeft="5dp"
                 android:text="date"
                 android:textSize="10sp"
-                app:layout_constraintStart_toEndOf="@+id/description_summary"
+                app:layout_constraintStart_toEndOf="@+id/post_title"
                 tools:layout_editor_absoluteY="19dp" />
         </LinearLayout>
     </android.support.constraint.ConstraintLayout>
@@ -154,6 +155,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/description_details_layout" />
+        app:layout_constraintTop_toBottomOf="@+id/description_layout" />
 
 </android.support.constraint.ConstraintLayout>

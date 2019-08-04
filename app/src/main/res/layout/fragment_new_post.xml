@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/new_post_frame"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".NewPostFragment">
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/home_screen"
+        android:id="@+id/new_post_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".MainFeed">
@@ -29,10 +30,10 @@
             android:id="@+id/description_text"
             android:layout_width="0dp"
             android:layout_height="200dp"
+            android:background="#E5E5E5"
             android:gravity="center"
             android:hint="Click to add description..."
             android:textColor="#7FA9BA"
-            android:background="#E5E5E5"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -55,7 +56,7 @@
             tools:text="Click to add allures..." />
 
         <android.support.constraint.ConstraintLayout
-            android:id="@+id/swipe_to_right_activity"
+            android:id="@+id/to_right_main_activity"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:background="@drawable/swipe_icon_background"
@@ -65,7 +66,7 @@
 
 
             <ImageView
-                android:id="@+id/profile_pic"
+                android:id="@+id/right_arrow"
                 android:layout_width="15dp"
                 android:layout_height="20dp"
                 android:layout_marginTop="5dp"
@@ -76,7 +77,7 @@
                 app:srcCompat="@drawable/ic_arrow_right_icon" />
 
             <ImageView
-                android:id="@+id/right_arrow"
+                android:id="@+id/to_main_feed"
                 android:layout_width="18dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="3dp"

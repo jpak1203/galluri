@@ -34,7 +34,7 @@ class Login : AppCompatActivity() {
         terms.paintFlags = terms.paintFlags or Paint.UNDERLINE_TEXT_FLAG
 
         // Press Enter to Login
-        val password = findViewById<TextView>(R.id.password_input)
+        val password = findViewById<TextView>(R.id.password_login_input)
         password.setOnKeyListener (View.OnKeyListener {_, keyCode, event ->
             if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP) {
                 loginClick()
@@ -44,7 +44,7 @@ class Login : AppCompatActivity() {
         })
 
         // Press Login Button to Login
-        val loginButton = findViewById<Button>(R.id.complete_signup)
+        val loginButton = findViewById<Button>(R.id.complete_login)
         loginButton.setOnClickListener {
             loginClick()
         }
@@ -64,16 +64,17 @@ class Login : AppCompatActivity() {
 
     private fun loginClick() {
 
-        val email = findViewById<TextView>(R.id.username_input)
+        val email = findViewById<TextView>(R.id.username_login_input)
         val emailText = email.text.toString()
-        val password = findViewById<TextView>(R.id.password_input)
+        val password = findViewById<TextView>(R.id.password_login_input)
         val invalid = findViewById<TextView>(R.id.invalidLogin)
 
         auth.signInWithEmailAndPassword(emailText, password.text.toString()).addOnCompleteListener(this) { task ->
+            Log.d("Authentication", this.toString())
             if (task.isSuccessful) {
                 Log.d("Authentication", "Login success")
 
-                //TODO: continue making fail-safe for if username does not exist for email that logged in due to unforseen circumstances
+                //TODO: continue making fail-safe: username does not exist in db due to backend deletion but has savedState in application
                 checkUsername(auth.currentUser!!.uid)
 
             } else {

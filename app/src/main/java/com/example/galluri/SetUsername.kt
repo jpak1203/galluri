@@ -33,10 +33,10 @@ class SetUsername : AppCompatActivity() {
 
         val user = auth.currentUser
         val email = user?.email.toString()
-        val finishSignup = findViewById<Button>(R.id.complete_signup)
-        val username = findViewById<TextView>(R.id.username_input)
+        val finishSignup = findViewById<Button>(R.id.complete_username_signup)
+        val username = findViewById<TextView>(R.id.set_username_input)
 
-        usernameCheck(user)
+        usernameCheck()
 
         username.setOnKeyListener (View.OnKeyListener { _, keyCode, event ->
             if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP) {
@@ -53,10 +53,10 @@ class SetUsername : AppCompatActivity() {
     }
 
 
-    private fun usernameCheck(user: FirebaseUser?) {
+    private fun usernameCheck() {
 
-        val username = findViewById<TextView>(R.id.username_input)
-        val finishButton = findViewById<Button>(R.id.complete_signup)
+        val username = findViewById<TextView>(R.id.set_username_input)
+        val finishButton = findViewById<Button>(R.id.complete_username_signup)
 
         val usernameRef = db.reference.child("Usernames")
 
@@ -140,8 +140,9 @@ class SetUsername : AppCompatActivity() {
     }
 
     private fun finishButton(user: FirebaseUser?, email: String) {
-        val username = findViewById<TextView>(R.id.username_input)
+        val username = findViewById<TextView>(R.id.set_username_input)
         val usernameString = username.text.toString()
+        username.setText("")
 
         writeNewUser(user!!.uid, usernameString, email)
         var intent = Intent(this, MainFeed::class.java)

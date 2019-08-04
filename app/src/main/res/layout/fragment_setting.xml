@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/settings_grame"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".SettingFragment">
+    tools:context=".SettingsFragment">
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/home_screen"
+        android:id="@+id/settings_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#EBEBEB"
@@ -55,7 +56,7 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <android.support.constraint.ConstraintLayout
-            android:id="@+id/swipe_to_left_activity"
+            android:id="@+id/to_left_profile_activity"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:background="@drawable/swipe_icon_background"
@@ -65,7 +66,7 @@
 
 
             <ImageView
-                android:id="@+id/new_post"
+                android:id="@+id/to_profile"
                 android:layout_width="18dp"
                 android:layout_height="20dp"
                 android:layout_marginTop="5dp"
@@ -75,7 +76,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_galluri_icon" />
+                app:srcCompat="@drawable/dda77bdc532ea07cfb4bb1698446e6a8653df0d5" />
 
             <ImageView
                 android:id="@+id/left_arrow"
@@ -171,7 +172,7 @@
             app:layout_constraintTop_toBottomOf="@+id/navbar" />
 
         <Button
-            android:id="@+id/change_propic"
+            android:id="@+id/change_propic_button"
             android:layout_width="159dp"
             android:layout_height="35dp"
             android:layout_marginStart="8dp"
@@ -192,7 +193,7 @@
             app:layout_constraintTop_toBottomOf="@+id/propic" />
 
         <android.support.constraint.ConstraintLayout
-            android:id="@+id/display_name_layout"
+            android:id="@+id/displayname_settings_layout"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -202,10 +203,10 @@
             android:layout_marginRight="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/change_propic">
+            app:layout_constraintTop_toBottomOf="@+id/change_propic_button">
 
             <TextView
-                android:id="@+id/display_name"
+                android:id="@+id/displayname_settings"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="30dp"
@@ -213,19 +214,19 @@
                 android:text="display name:"
                 android:textColor="#535353"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/displayname_input"
+                app:layout_constraintEnd_toStartOf="@+id/displayname_settings_input"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.6" />
 
             <EditText
-                android:id="@+id/displayname_input"
+                android:id="@+id/displayname_settings_input"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:gravity="center"
                 android:hint="Name"
                 android:inputType="textPersonName"
                 android:textSize="12sp"
-                android:gravity="center"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -234,7 +235,7 @@
 
 
         <android.support.constraint.ConstraintLayout
-            android:id="@+id/user_details_layout"
+            android:id="@+id/username_settings_layout"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -244,10 +245,10 @@
             android:layout_marginRight="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/display_name_layout">
+            app:layout_constraintTop_toBottomOf="@+id/displayname_settings_layout">
 
             <TextView
-                android:id="@+id/username_details"
+                android:id="@+id/username_settings"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="30dp"
@@ -255,19 +256,19 @@
                 android:text="username:"
                 android:textColor="#535353"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/username_input"
+                app:layout_constraintEnd_toStartOf="@+id/username_settings_input"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.6" />
 
             <EditText
-                android:id="@+id/username_input"
+                android:id="@+id/username_settings_input"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:gravity="center"
                 android:hint="Username"
                 android:inputType="textPersonName"
                 android:textSize="12sp"
-                android:gravity="center"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -275,7 +276,7 @@
 
 
         <android.support.constraint.ConstraintLayout
-            android:id="@+id/description_details_layout"
+            android:id="@+id/description_settings_layout"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -285,10 +286,10 @@
             android:layout_marginRight="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/user_details_layout">
+            app:layout_constraintTop_toBottomOf="@+id/username_settings_layout">
 
             <TextView
-                android:id="@+id/description_details"
+                android:id="@+id/description_settings"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="30dp"
@@ -296,19 +297,19 @@
                 android:text="description:"
                 android:textColor="#535353"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/description_input"
+                app:layout_constraintEnd_toStartOf="@+id/description_settings_input"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.6" />
 
             <EditText
-                android:id="@+id/description_input"
+                android:id="@+id/description_settings_input"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:gravity="center"
                 android:hint="Description"
                 android:inputType="textPersonName"
                 android:textSize="12sp"
-                android:gravity="center"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -316,7 +317,7 @@
         </android.support.constraint.ConstraintLayout>
 
         <android.support.constraint.ConstraintLayout
-            android:id="@+id/allures_layout"
+            android:id="@+id/allures_settings_layout"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -326,10 +327,10 @@
             android:layout_marginRight="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/description_details_layout">
+            app:layout_constraintTop_toBottomOf="@+id/description_settings_layout">
 
             <TextView
-                android:id="@+id/allures"
+                android:id="@+id/allures_settings"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="30dp"
@@ -337,20 +338,20 @@
                 android:text="allures:"
                 android:textColor="#535353"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/allures_input"
+                app:layout_constraintEnd_toStartOf="@+id/allures_settings_input"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.6" />
 
             <EditText
-                android:id="@+id/allures_input"
+                android:id="@+id/allures_settings_input"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:gravity="center"
                 android:hint="Allures"
                 android:inputType="textPersonName"
                 android:singleLine="false"
                 android:textSize="12sp"
-                android:gravity="center"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -358,7 +359,7 @@
 
 
         <android.support.constraint.ConstraintLayout
-            android:id="@+id/email_layout"
+            android:id="@+id/email_settings_layout"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -369,10 +370,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.494"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/allures_layout">
+            app:layout_constraintTop_toBottomOf="@+id/allures_settings_layout">
 
             <TextView
-                android:id="@+id/email"
+                android:id="@+id/email_settings"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="30dp"
@@ -380,26 +381,26 @@
                 android:text="email:"
                 android:textColor="#535353"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/email_input"
+                app:layout_constraintEnd_toStartOf="@+id/email_settings_input"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.6" />
 
             <EditText
-                android:id="@+id/email_input"
+                android:id="@+id/email_settings_input"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:gravity="center"
                 android:hint="Email"
                 android:inputType="textEmailAddress"
                 android:textSize="12sp"
-                android:gravity="center"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </android.support.constraint.ConstraintLayout>
 
         <Switch
-            android:id="@+id/switch2"
+            android:id="@+id/dark_mode_switch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -412,7 +413,7 @@
             android:textColor="#535353"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/email_layout" />
+            app:layout_constraintTop_toBottomOf="@+id/email_settings_layout" />
 
 
     </android.support.constraint.ConstraintLayout>
