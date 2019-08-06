@@ -2,10 +2,12 @@ package com.example.galluri
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.view.WindowManager
+import android.util.Log
+import android.view.*
+import android.widget.EditText
+import android.view.KeyEvent.KEYCODE_ENTER
+
+
 
 
 class NewPostFragment : Fragment() {
@@ -18,6 +20,42 @@ class NewPostFragment : Fragment() {
         // Inflate the layout for this fragment
         val rootView = inflater.inflate(R.layout.fragment_new_post, container, false)
 
+        val editText = rootView.findViewById<EditText>(R.id.description_text)
+        editText.setOnKeyListener(object : View.OnKeyListener {
+
+            override fun onKey(v: View, keyCode: Int, event: KeyEvent): Boolean {
+
+                // if enter is pressed start calculating
+                if (keyCode == KEYCODE_ENTER && event.getAction() === KeyEvent.ACTION_UP) {
+
+                    // get EditText text
+                    val text = (v as EditText).text.toString()
+
+                    // find how many rows it contains
+                    val editTextRowCount = text.split("\\n".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray().size
+
+                    Log.d("Row", editTextRowCount.toString())
+                    // user has input more than limited - lets do something
+                    // about that
+                    if (editTextRowCount >= 25) {
+
+                        // find the last break
+                        val lastBreakIndex = text.lastIndexOf("\n")
+
+                        // compose new text
+                        val newText = text.substring(0, lastBreakIndex)
+
+                        // add new text - delete old one and append new one
+                        // (append because I want the cursor to be at the end)
+                        v.setText("")
+                        v.append(newText)
+
+                    }
+                }
+
+                return false
+            }
+        })
         return rootView
     }
 

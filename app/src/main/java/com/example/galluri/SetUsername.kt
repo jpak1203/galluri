@@ -50,6 +50,18 @@ class SetUsername : AppCompatActivity() {
             finishButton(user, email)
         }
 
+        backToSignupClick()
+
+    }
+
+    private fun backToSignupClick() {
+        val backToSignup = findViewById<TextView>(R.id.back_to_signup)
+        backToSignup.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
+            val intent = Intent(this@SetUsername, Signup::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 
 

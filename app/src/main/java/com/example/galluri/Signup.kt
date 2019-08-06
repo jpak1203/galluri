@@ -58,6 +58,10 @@ class Signup : AppCompatActivity() {
                         finish()
                     } else {
                         Log.d("Authentication", "User found: no username")
+                        var intent = Intent(this@Signup, SetUsername::class.java)
+                        intent.putExtra("id", currentUser.email)
+                        startActivity(intent)
+                        finish()
                     }
                 }
 
