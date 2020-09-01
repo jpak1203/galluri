@@ -1,42 +1,54 @@
 package com.example.galluri
 
-import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.util.Log
-import android.view.*
-import android.widget.EditText
-import android.view.KeyEvent.KEYCODE_ENTER
-import android.content.Intent
-import android.support.v4.view.accessibility.AccessibilityEventCompat.setAction
-import android.widget.Button
-import android.widget.ImageButton
+import android.annotation.SuppressLint
 import android.app.Activity
-import android.graphics.Bitmap
-import android.R.attr.data
-import android.support.v4.app.NotificationCompat.getExtras
-import android.content.Intent.getIntent
+import android.content.Intent
 import android.net.Uri
-import android.graphics.BitmapFactory
-import android.graphics.drawable.BitmapDrawable
+import android.os.Bundle
 import android.provider.MediaStore
-import android.widget.ImageView
+import android.util.Log
+import android.view.KeyEvent
+import android.view.KeyEvent.KEYCODE_ENTER
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.EditText
+import android.widget.ImageButton
+import androidx.fragment.app.Fragment
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import java.io.IOException
+import java.util.*
 
 
 class NewPostFragment : Fragment() {
 
-    val PICK_IMAGE = 1
+    //global variables
+    private val PICK_IMAGE = 1
+    private var filePath: Uri? = null
+    private var addImage: ImageButton? = null
+
+    private var uploadButton: ImageButton? = null
+    private var cancelButton: ImageButton? = null
+
+    //Firebase
+    var storage: FirebaseStorage? = null
+    var storageReference: StorageReference? = null
+
     //todo: Database Implementation
     //todo: Upload picture and update placeholder
     //todo: Fix text-box appearance when creating title and description
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         val rootView = inflater.inflate(R.layout.fragment_new_post, container, false)
 
+        // Text input for new post
         val editText = rootView.findViewById<EditText>(R.id.description_text)
         editText.setOnKeyListener { v, keyCode, event ->
             // if enter is pressed start calculating
-            if (keyCode == KEYCODE_ENTER && event.action === KeyEvent.ACTION_UP) {
+            if (keyCode == KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP) {
 
                 // get EditText text
                 val text = (v as EditText).text.toString()
@@ -66,13 +78,20 @@ class NewPostFragment : Fragment() {
             false
         }
 
-        val addImage = rootView.findViewById<ImageButton>(R.id.add_image)
+        // Image input for new post
+        storage = FirebaseStorage.getInstance()
+        storageReference = storage?.reference
 
-        addImage.setOnClickListener {
-            val intent = Intent()
-            intent.setType("image/*")
-            intent.setAction(Intent.ACTION_GET_CONTENT)
-            startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE)
+        addImage = rootView.findViewById<ImageButton>(R.id.add_image)
+        uploadButton = rootView.findViewById<ImageButton>(R.id.upload_button)
+        cancelButton = rootView.findViewById<ImageButton>(R.id.cancel_button)
+
+        addImage?.setOnClickListener {
+            chooseImage()
+        }
+
+        uploadButton?.setOnClickListener {
+            uploadImage()
         }
 
         return rootView
@@ -81,24 +100,43 @@ class NewPostFragment : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == PICK_IMAGE) {
-            if (resultCode == Activity.RESULT_OK) {
-                val uri = data?.data
-                val bitmap = MediaStore.Images.Media.getBitmap(this.context?.contentResolver, uri)
-                val ob = BitmapDrawable(this.resources, bitmap)
+        if (requestCode == PICK_IMAGE && resultCode == Activity.RESULT_OK) {
 
-                val addImage = view?.findViewById<ImageButton>(R.id.add_image)
-                addImage?.background = ob
-                addImage?.adjustViewBounds = true
-                addImage?.scaleType = ImageView.ScaleType.CENTER_CROP
-                addImage?.setImageResource(android.R.color.transparent)
+            filePath = data?.data
+            try {
+                val bitmap = MediaStore.Images.Media.getBitmap(context?.contentResolver, filePath)
+                addImage?.background = null
+                addImage?.setImageBitmap(bitmap)
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
 
-                Log.d("Result", addImage.toString())
-                Log.d("Result", uri.toString())
-            }
-            if (resultCode == Activity.RESULT_CANCELED) {
-                //Write your code if there's no result
-            }
+
+            uploadButton?.visibility = ImageButton.VISIBLE
+            cancelButton?.visibility = ImageButton.VISIBLE
+        }
+    }
+
+    private fun chooseImage() {
+        val intent = Intent()
+        intent.type = "image/*"
+        intent.action = Intent.ACTION_GET_CONTENT
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE)
+    }
+
+    private fun uploadImage() {
+
+        if (filePath != null) {
+            val ref = storageReference?.child("images/" + UUID.randomUUID().toString())
+
+            //todo: add notification on upload progress
+            ref?.putFile(filePath!!)
+                    ?.addOnSuccessListener {
+                    }
+                    ?.addOnFailureListener { e ->
+                    }
+                    ?.addOnProgressListener { taskSnapshot ->
+                    }
         }
     }
 

@@ -1,13 +1,14 @@
 package com.example.galluri
 
 import android.os.Bundle
-import android.support.v4.view.ViewPager
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
+import androidx.viewpager.widget.PagerAdapter
+import androidx.viewpager.widget.ViewPager
 
 class MainFeed : AppCompatActivity() {
 
     private lateinit var viewPager: ViewPager
-    private lateinit var pagerAdapter: MainPagerAdapter
+    private lateinit var pagerAdapter: PagerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -15,7 +16,6 @@ class MainFeed : AppCompatActivity() {
 
         viewPager = findViewById(R.id.main_feed_pager)
 
-        pagerAdapter = MainPagerAdapter(supportFragmentManager)
         viewPager.adapter = pagerAdapter
         viewPager.setCurrentItem(1)
     }

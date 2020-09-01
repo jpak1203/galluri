@@ -7,14 +7,14 @@
     android:layout_height="match_parent"
     tools:context=".UserProfileFragment">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/user_profile_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#EBEBEB"
         tools:context=".UserProfile">
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/navbar"
             android:layout_width="0dp"
             android:layout_height="60dp"
@@ -79,9 +79,9 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_mail_icon" />
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/grid_layout"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -91,7 +91,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/profile_view_buttons_layout" />
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/profile_view_buttons_layout"
             android:layout_width="0dp"
             android:layout_height="40dp"
@@ -151,7 +151,7 @@
                 app:layout_constraintVertical_bias="1.0"
                 app:srcCompat="@drawable/ic_subs_icon"
                 tools:ignore="MissingConstraints" />
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ImageView
             android:id="@+id/propic"
@@ -199,10 +199,11 @@
             app:fontFamily="@font/georgia"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/username_header" />
+            app:layout_constraintTop_toBottomOf="@+id/username_header"
+            android:gravity="center_horizontal" />
 
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/to_right_settings_activity"
             android:layout_width="35dp"
             android:layout_height="35dp"
@@ -236,9 +237,9 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_settings_icon" />
 
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/to_left_main_activity"
             android:layout_width="35dp"
             android:layout_height="35dp"
@@ -271,9 +272,9 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_arrow_left_icon" />
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
