@@ -16,6 +16,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -26,66 +27,82 @@ class Signup : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var db: FirebaseDatabase
 
+    lateinit var emailTextView: TextView
+    lateinit var passwordTextView: TextView
+    lateinit var confirmTextView: TextView
+    lateinit var emailSignUpButton: Button
+    lateinit var loginLink: TextView
+    lateinit var termsLink: TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        Log.d("Authentication", "OnCreate triggered")
+        Log.d("Page", "onCreate triggered: Signup")
 
         auth = FirebaseAuth.getInstance()
         db = FirebaseDatabase.getInstance()
 
-        val currentUser = auth.currentUser
-
         //TODO: if user is deleted, remove cached user
-        
+
         // Check if currentUser exists
-        if (currentUser != null) {
+        val currentUser = auth.currentUser
+        if (currentUser != null) updateUI(currentUser)
 
-            val uidQuery = db.reference.child("Users")
+        setContentView(R.layout.activity_signup)
 
-            uidQuery.addListenerForSingleValueEvent(object: ValueEventListener {
-                override fun onCancelled(p0: DatabaseError) {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                }
+        emailTextView = findViewById(R.id.email_signup_input)
+        passwordTextView = findViewById(R.id.password_signup_input)
+        confirmTextView = findViewById(R.id.confirmpassword_signup_input)
+        emailSignUpButton = findViewById(R.id.complete_signup)
+        loginLink = findViewById(R.id.login_link)
+        termsLink = findViewById(R.id.terms_link)
+    }
 
-                override fun onDataChange(p0: DataSnapshot) {
-                    Log.d("Authentication", currentUser.uid)
-                    if (p0.child(currentUser.uid).value != null) {
-                        Log.d("Authentication", "User ${p0.child(currentUser.uid).child("username").value.toString()}: logging in")
-                        var intent = Intent(this@Signup, MainFeed::class.java)
-                        intent.putExtra("id", currentUser.email)
-                        startActivity(intent)
-                        finish()
-                    } else {
-                        Log.d("Authentication", "User found: no username")
-                        var intent = Intent(this@Signup, SetUsername::class.java)
-                        intent.putExtra("id", currentUser.email)
-                        startActivity(intent)
-                        finish()
-                    }
-                }
+    override fun onStart() {
+        super.onStart()
+        Log.d("Page", "onStart triggered: Signup")
 
-            })
-        } else {
-            setContentView(R.layout.activity_signup)
+        emailSignUpButton.setTextColor(Color.parseColor("#BFB5B5B5"))
+        emailSignUpButton.background.alpha = 150
+        termsLink.paintFlags = termsLink.paintFlags or Paint.UNDERLINE_TEXT_FLAG
 
-            confirmPassword()
+        confirmPassword()
+        submitSignUp()
+        loginClick()
+    }
 
-            val emailSignUpButton = findViewById<Button>(R.id.complete_signup)
-            emailSignUpButton.setOnClickListener {
-                createAccount()
+    private fun updateUI(currentUser : FirebaseUser) {
+        val uidQuery = db.reference.child("Users")
+        uidQuery.addListenerForSingleValueEvent(object: ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }
 
-            // Underline Terms & Privacy Policy
-            val terms = findViewById<TextView>(R.id.terms_link)
-            terms.paintFlags = terms.paintFlags or Paint.UNDERLINE_TEXT_FLAG
+            override fun onDataChange(p0: DataSnapshot) {
+                Log.d("Authentication", currentUser.uid)
+                if (p0.child(currentUser.uid).value != null) {
+                    Log.d("Authentication", "User ${p0.child(currentUser.uid).child("username").value.toString()}: logging in")
+                    val intent = Intent(this@Signup, MainFeed::class.java)
+                    intent.putExtra("id", currentUser.email)
+                    startActivity(intent)
+                    finish()
+                } else {
+                    Log.d("Authentication", "User found: no username")
+                    val intent = Intent(this@Signup, SetUsername::class.java)
+                    intent.putExtra("id", currentUser.email)
+                    startActivity(intent)
+                    finish()
+                }
+            }
+        })
+    }
 
-            loginClick()
+    private fun submitSignUp() {
+        emailSignUpButton.setOnClickListener {
+            createAccount()
         }
     }
 
     private fun loginClick() {
-        val loginLink = findViewById<TextView>(R.id.login_link)
         loginLink.setOnClickListener {
             val intent = Intent(this@Signup, Login::class.java)
             startActivity(intent)
@@ -93,15 +110,11 @@ class Signup : AppCompatActivity() {
         }
     }
 
-
     private fun createAccount() {
+        if (!validateForm()) return
 
-        if (!validateForm()) {
-            return
-        }
-
-        val email = findViewById<TextView>(R.id.email_signup_input).text.toString()
-        val password = findViewById<TextView>(R.id.password_signup_input).text.toString()
+        val email = emailTextView.text.toString()
+        val password = passwordTextView.text.toString()
 
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this) { task ->
             if (task.isSuccessful) {
@@ -119,33 +132,28 @@ class Signup : AppCompatActivity() {
         }
     }
 
-
     private fun validateForm(): Boolean {
-        val email = findViewById<TextView>(R.id.email_signup_input)
-        val password = findViewById<TextView>(R.id.password_signup_input)
-        val confirm = findViewById<TextView>(R.id.confirmpassword_signup_input)
-
         var valid = true
 
-        if (TextUtils.isEmpty(email.text)) {
-            email.setBackgroundResource(R.drawable.credential_input_fail)
+        if (TextUtils.isEmpty(emailTextView.text)) {
+            emailTextView.setBackgroundResource(R.drawable.credential_input_fail)
             valid = false
         } else {
-            email.error = null
+            emailTextView.error = null
         }
 
-        if (TextUtils.isEmpty(password.text)) {
-            password.setBackgroundResource(R.drawable.credential_input_fail)
+        if (TextUtils.isEmpty(passwordTextView.text)) {
+            passwordTextView.setBackgroundResource(R.drawable.credential_input_fail)
             valid = false
         } else {
-            password.error = null
+            passwordTextView.error = null
         }
 
-        if (password.text.toString() != confirm.text.toString() || TextUtils.isEmpty(confirm.text)) {
-            confirm.setBackgroundResource(R.drawable.credential_input_fail)
+        if (passwordTextView.text.toString() != confirmTextView.text.toString() || TextUtils.isEmpty(confirmTextView.text)) {
+            confirmTextView.setBackgroundResource(R.drawable.credential_input_fail)
             valid = false
         } else {
-            confirm.error = null
+            confirmTextView.error = null
         }
 
 
@@ -154,12 +162,7 @@ class Signup : AppCompatActivity() {
 
 
     private fun confirmPassword() {
-        val password = findViewById<TextView>(R.id.password_signup_input)
-        val confirm = findViewById<TextView>(R.id.confirmpassword_signup_input)
-
-        val signupButton = findViewById<Button>(R.id.complete_signup)
-
-        confirm.addTextChangedListener(object : TextWatcher {
+        confirmTextView.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
 
             }
@@ -169,17 +172,21 @@ class Signup : AppCompatActivity() {
 
             @SuppressLint("ResourceAsColor")
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                if (p0.toString() != password.text.toString()) {
-                    confirm.setTextColor(Color.parseColor("#da6161"))
-                    signupButton.isClickable = false
+                if (p0.toString() != passwordTextView.text.toString()) {
+                    confirmTextView.setTextColor(Color.parseColor("#da6161"))
+                    emailSignUpButton.setTextColor(Color.parseColor("#BFB5B5B5"))
+                    emailSignUpButton.background.alpha = 150
+                    emailSignUpButton.isClickable = false
                 } else {
-                    confirm.setTextColor(R.color.credential_input_focus)
-                    signupButton.isClickable = true
+                    confirmTextView.setTextColor(R.color.credential_input_focus)
+                    emailSignUpButton.setTextColor(Color.parseColor("#E5E5E5"))
+                    emailSignUpButton.background.alpha = 255
+                    emailSignUpButton.isClickable = true
                 }
             }
         })
 
-        confirm.setOnKeyListener (View.OnKeyListener { _, keyCode, event ->
+        confirmTextView.setOnKeyListener (View.OnKeyListener { _, keyCode, event ->
             if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP) {
                 createAccount()
                 return@OnKeyListener true

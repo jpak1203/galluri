@@ -1,6 +1,7 @@
 package com.example.galluri
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
@@ -12,9 +13,15 @@ class MainFeed : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.d("Page", "onCreate triggered: MainFeed")
         setContentView(R.layout.activity_main_feed)
 
         viewPager = findViewById(R.id.main_feed_pager)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Log.d("Page", "onStart triggered: MainFeed")
 
         pagerAdapter = MainPagerAdapter(supportFragmentManager)
         viewPager.adapter = pagerAdapter

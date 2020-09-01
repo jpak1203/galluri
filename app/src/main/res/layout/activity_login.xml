@@ -9,19 +9,32 @@
     tools:context=".Login">
 
 
-    <ImageView
-        android:id="@+id/galluri_icon"
-        android:layout_width="79dp"
-        android:layout_height="114dp"
+    <EditText
+        android:id="@+id/username_login_input"
+        android:layout_width="250sp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
+        android:autofillHints="email"
+        android:background="@drawable/credential_input_border"
+        android:ems="10"
+        android:fontFamily="@font/helveticaneue"
+        android:gravity="center|start"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:singleLine="true"
+        android:textColor="@color/credential_input_focus"
+        android:textColorHighlight="#004865"
+        android:textColorHint="#BFE5E5E5"
+        android:textCursorDrawable="@null"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_galluri_icon" />
+        app:layout_constraintTop_toBottomOf="@+id/invalidLogin" />
 
     <TextView
         android:id="@+id/galluri"
@@ -43,32 +56,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/galluri_icon" />
 
-    <EditText
-        android:id="@+id/username_login_input"
-        android:layout_width="250sp"
-        android:layout_height="wrap_content"
+    <ImageView
+        android:id="@+id/galluri_icon"
+        android:layout_width="79dp"
+        android:layout_height="114dp"
+        android:layout_marginTop="70dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="10dp"
+        android:contentDescription="galluri icon"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:autofillHints="email"
-        android:background="@drawable/credential_input_border"
-        android:ems="10"
-        android:fontFamily="@font/helveticaneue"
-        android:gravity="center|start"
-        android:hint="Username"
-        android:inputType="textEmailAddress"
-        android:singleLine="true"
-        android:textColor="@color/credential_input_focus"
-        android:textColorHighlight="#004865"
-        android:textColorHint="#BFE5E5E5"
-        android:textCursorDrawable="@null"
-        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/invalidLogin" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_galluri_icon" />
 
     <EditText
         android:id="@+id/password_login_input"

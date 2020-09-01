@@ -24,6 +24,14 @@ class SetUsername : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var db: FirebaseDatabase
 
+    lateinit var finishSignupButton: Button
+    lateinit var usernameTextView: TextView
+    lateinit var invalidUsernameTextView: TextView
+    lateinit var invalidCharMinTextView: TextView
+    lateinit var invalidCharMaxTextView: TextView
+    lateinit var invalidCharRestrictionTextView: TextView
+    lateinit var backToSignupLink: TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.set_username_signup)
@@ -31,32 +39,44 @@ class SetUsername : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         db = FirebaseDatabase.getInstance()
 
+        finishSignupButton = findViewById(R.id.complete_username_signup)
+        usernameTextView = findViewById(R.id.set_username_input)
+        invalidUsernameTextView = findViewById(R.id.invalid_username)
+        invalidCharMinTextView = findViewById(R.id.character_min)
+        invalidCharMaxTextView = findViewById(R.id.character_max)
+        backToSignupLink = findViewById(R.id.back_to_signup)
+        invalidCharRestrictionTextView = findViewById(R.id.character_restriction)
+    }
+
+    override fun onStart() {
+        super.onStart()
         val user = auth.currentUser
         val email = user?.email.toString()
-        val finishSignup = findViewById<Button>(R.id.complete_username_signup)
-        val username = findViewById<TextView>(R.id.set_username_input)
 
+        usernameEnter(user, email)
+        clickFinish(user, email)
         usernameCheck()
+        backToSignupClick()
+    }
 
-        username.setOnKeyListener (View.OnKeyListener { _, keyCode, event ->
+    private fun usernameEnter(user: FirebaseUser?, email: String) {
+        usernameTextView.setOnKeyListener (View.OnKeyListener { _, keyCode, event ->
             if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP) {
-                finishButton(user, email)
+                finishUsernameSetup(user, email)
                 return@OnKeyListener true
             }
             false
         })
+    }
 
-        finishSignup.setOnClickListener {
-            finishButton(user, email)
+    private fun clickFinish(user: FirebaseUser?, email: String) {
+        finishSignupButton.setOnClickListener {
+            finishUsernameSetup(user, email)
         }
-
-        backToSignupClick()
-
     }
 
     private fun backToSignupClick() {
-        val backToSignup = findViewById<TextView>(R.id.back_to_signup)
-        backToSignup.setOnClickListener {
+        backToSignupLink.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
             val intent = Intent(this@SetUsername, Signup::class.java)
             startActivity(intent)
@@ -64,15 +84,21 @@ class SetUsername : AppCompatActivity() {
         }
     }
 
+    private fun finishUsernameSetup(user: FirebaseUser?, email: String) {
+        val usernameString = usernameTextView.text.toString()
+        usernameTextView.setText("")
+
+        writeNewUser(user!!.uid, usernameString, email)
+        val intent = Intent(this, MainFeed::class.java)
+        intent.putExtra("id", auth.currentUser?.email)
+        startActivity(intent)
+        finish()
+    }
 
     private fun usernameCheck() {
-
-        val username = findViewById<TextView>(R.id.set_username_input)
-        val finishButton = findViewById<Button>(R.id.complete_username_signup)
-
         val usernameRef = db.reference.child("Usernames")
 
-        username.addTextChangedListener(object: TextWatcher {
+        usernameTextView.addTextChangedListener(object: TextWatcher {
             override fun afterTextChanged(s: Editable?) {
             }
 
@@ -98,48 +124,48 @@ class SetUsername : AppCompatActivity() {
                         Log.d("Authentication", p0.child(s.toString()).value.toString())
 
                         if ((p0.child(s.toString()).value != null)) {
-                            username.setTextColor(Color.parseColor("#BD3535"))
-                            findViewById<TextView>(R.id.invalid_username).visibility = View.VISIBLE
-                            finishButton.isClickable = false
+                            usernameTextView.setTextColor(Color.parseColor("#BD3535"))
+                            invalidUsernameTextView.visibility = View.VISIBLE
+                            finishSignupButton.isClickable = false
                             Log.d("Authentication", "Username matches user in db")
                         } else {
                             usernameValid = true
-                            findViewById<TextView>(R.id.invalid_username).visibility = View.GONE
+                            invalidUsernameTextView.visibility = View.GONE
                         }
 
                         if (s.toString().length < 5) {
-                            username.setTextColor(Color.parseColor("#BD3535"))
-                            findViewById<TextView>(R.id.character_min).visibility = View.VISIBLE
-                            finishButton.isClickable = false
+                            usernameTextView.setTextColor(Color.parseColor("#BD3535"))
+                            invalidCharMinTextView.visibility = View.VISIBLE
+                            finishSignupButton.isClickable = false
                             Log.d("Authentication", "Username is under 5 characters")
                         } else {
                             usernameMin = true
-                            findViewById<TextView>(R.id.character_min).visibility = View.GONE
+                            invalidCharMinTextView.visibility = View.GONE
                         }
 
                         if (s.toString().length > 15) {
-                            username.setTextColor(Color.parseColor("#BD3535"))
-                            findViewById<TextView>(R.id.character_max).visibility = View.VISIBLE
-                            finishButton.isClickable = false
+                            usernameTextView.setTextColor(Color.parseColor("#BD3535"))
+                            invalidCharMaxTextView.visibility = View.VISIBLE
+                            finishSignupButton.isClickable = false
                             Log.d("Authentication", "Username is over 15 characters")
                         } else {
                             usernameMax = true
-                            findViewById<TextView>(R.id.character_max).visibility = View.GONE
+                            invalidCharMaxTextView.visibility = View.GONE
                         }
 
                         if (s.toString().contains("/[-!\$%^&*()+|~=`{}\\[\\]:\";'<>?,\\/]/\n")) {
-                            username.setTextColor(Color.parseColor("#BD3535"))
-                            findViewById<TextView>(R.id.character_restriction).visibility = View.VISIBLE
-                            finishButton.isClickable = false
+                            usernameTextView.setTextColor(Color.parseColor("#BD3535"))
+                            invalidCharRestrictionTextView.visibility = View.VISIBLE
+                            finishSignupButton.isClickable = false
                             Log.d("Authentication", "Username contains invalid special characters")
                         } else {
                             usernameSpecial = true
-                            findViewById<TextView>(R.id.character_restriction).visibility = View.GONE
+                            invalidCharRestrictionTextView.visibility = View.GONE
                         }
 
                         if (usernameValid && usernameMin && usernameMax && usernameSpecial) {
-                            username.setTextColor(R.color.credential_input_focus)
-                            finishButton.isClickable = true
+                            usernameTextView.setTextColor(R.color.credential_input_focus)
+                            finishSignupButton.isClickable = true
                             Log.d("Authentication", "Username is available to use")
                         }
 
@@ -149,18 +175,6 @@ class SetUsername : AppCompatActivity() {
             }
         })
 
-    }
-
-    private fun finishButton(user: FirebaseUser?, email: String) {
-        val username = findViewById<TextView>(R.id.set_username_input)
-        val usernameString = username.text.toString()
-        username.setText("")
-
-        writeNewUser(user!!.uid, usernameString, email)
-        var intent = Intent(this, MainFeed::class.java)
-        intent.putExtra("id", auth.currentUser?.email)
-        startActivity(intent)
-        finish()
     }
 
     private fun writeNewUser(uid: String, username: String, email: String) {
