@@ -8,7 +8,7 @@ import androidx.viewpager.widget.ViewPager
 class MainFeed : AppCompatActivity() {
 
     private lateinit var viewPager: ViewPager
-    private lateinit var pagerAdapter: PagerAdapter
+    private lateinit var pagerAdapter: MainPagerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -16,8 +16,9 @@ class MainFeed : AppCompatActivity() {
 
         viewPager = findViewById(R.id.main_feed_pager)
 
+        pagerAdapter = MainPagerAdapter(supportFragmentManager)
         viewPager.adapter = pagerAdapter
-        viewPager.setCurrentItem(1)
+        viewPager.currentItem = 1
     }
 
 }

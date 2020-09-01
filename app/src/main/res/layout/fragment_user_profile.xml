@@ -14,147 +14,8 @@
         android:background="#EBEBEB"
         tools:context=".UserProfile">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/navbar"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:background="#ffffff"
-            android:elevation="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:id="@+id/galluri_icon"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_galluri_icon" />
-
-            <TextView
-                android:id="@+id/galluri_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:text="wavycolde"
-                android:textColor="@color/colorAccent"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:fontFamily="@font/helveticaneue"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/galluri_icon"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:id="@+id/search_icon"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="8dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/message_icon"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_search_icon" />
-
-            <ImageView
-                android:id="@+id/message_icon"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="8dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_mail_icon" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/grid_layout"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/profile_view_buttons_layout" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/profile_view_buttons_layout"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/profile_description">
-
-            <ImageButton
-                android:id="@+id/gridView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_frame"
-                tools:ignore="MissingConstraints" />
-
-            <ImageButton
-                android:id="@+id/zineView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:padding="12dp"
-                android:scaleType="fitCenter"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/gridView"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_zine_icon"
-                tools:ignore="MissingConstraints" />
-
-            <ImageButton
-                android:id="@+id/starView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/zineView"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.39999998"
-                app:srcCompat="@drawable/ic_star_icon"
-                tools:ignore="MissingConstraints" />
-
-            <ImageButton
-                android:id="@+id/subsView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/starView"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0"
-                app:srcCompat="@drawable/ic_subs_icon"
-                tools:ignore="MissingConstraints" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
         <ImageView
-            android:id="@+id/propic"
+            android:id="@+id/profile_img"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginStart="8dp"
@@ -162,6 +23,7 @@
             android:layout_marginTop="30dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
+            android:contentDescription="profile image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/navbar"
@@ -181,7 +43,7 @@
             app:fontFamily="@font/helveticaneue"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/propic" />
+            app:layout_constraintTop_toBottomOf="@+id/profile_img" />
 
         <TextView
             android:id="@+id/profile_description"
@@ -192,16 +54,151 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
+            android:gravity="center_horizontal"
             android:lines="5"
             android:text="boy's rudeness\ngirl's rudeness\nlove\nwave\nContact | Colde@wavy.kr"
             android:textAlignment="center"
-            android:textSize="10sp"
-            app:fontFamily="@font/georgia"
+            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/username_header"
-            android:gravity="center_horizontal" />
+            app:fontFamily="@font/georgia"
+            app:layout_constraintTop_toBottomOf="@+id/username_header" />
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/profile_view_buttons_layout"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profile_description">
+
+            <ImageButton
+                android:id="@+id/gridView"
+                android:contentDescription="user grid view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_frame"
+                tools:ignore="MissingConstraints" />
+
+            <ImageButton
+                android:id="@+id/zineView"
+                android:contentDescription="user zine view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:padding="12dp"
+                android:scaleType="fitCenter"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/gridView"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_zine_icon"
+                tools:ignore="MissingConstraints" />
+
+            <ImageButton
+                android:id="@+id/starView"
+                android:contentDescription="user starred view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/zineView"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.39999998"
+                app:srcCompat="@drawable/ic_star_icon"
+                tools:ignore="MissingConstraints" />
+
+            <ImageButton
+                android:id="@+id/subsView"
+                android:contentDescription="user subs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/starView"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0"
+                app:srcCompat="@drawable/ic_subs_icon"
+                tools:ignore="MissingConstraints" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/navbar"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:background="#ffffff"
+            android:elevation="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/galluri_icon"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:contentDescription="galluri icon"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_galluri_icon" />
+
+            <ImageView
+                android:id="@+id/search_icon"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="8dp"
+                android:contentDescription="search icon"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/message_icon"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_search_icon" />
+
+            <ImageView
+                android:id="@+id/message_icon"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="8dp"
+                android:contentDescription="message icon"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_mail_icon" />
+
+            <TextView
+                android:id="@+id/galluri_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="wavycolde"
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:fontFamily="@font/helveticaneue"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/galluri_icon"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/to_right_settings_activity"
@@ -215,6 +212,7 @@
 
             <ImageView
                 android:id="@+id/right_arrow"
+                android:contentDescription="right arrow"
                 android:layout_width="15dp"
                 android:layout_height="20dp"
                 android:layout_marginTop="5dp"
@@ -226,6 +224,7 @@
 
             <ImageView
                 android:id="@+id/to_settings"
+                android:contentDescription="settings icon"
                 android:layout_width="18dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="3dp"
@@ -239,6 +238,7 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/to_left_main_activity"
             android:layout_width="35dp"
@@ -251,6 +251,7 @@
 
             <ImageView
                 android:id="@+id/to_main_feed"
+                android:contentDescription="galluri icon"
                 android:layout_width="18dp"
                 android:layout_height="20dp"
                 android:layout_marginTop="5dp"
@@ -264,6 +265,7 @@
 
             <ImageView
                 android:id="@+id/left_arrow"
+                android:contentDescription="left arrow"
                 android:layout_width="15dp"
                 android:layout_height="20dp"
                 android:layout_marginTop="5dp"
@@ -273,6 +275,16 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_arrow_left_icon" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/grid_layout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profile_view_buttons_layout" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
