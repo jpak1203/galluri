@@ -3,12 +3,11 @@ package com.example.galluri
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.viewpager.widget.PagerAdapter
-import androidx.viewpager.widget.ViewPager
+import androidx.viewpager2.widget.ViewPager2
 
 class MainFeed : AppCompatActivity() {
 
-    private lateinit var viewPager: ViewPager
+    private lateinit var viewPager: ViewPager2
     private lateinit var pagerAdapter: MainPagerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,7 +22,7 @@ class MainFeed : AppCompatActivity() {
         super.onStart()
         Log.d("Page", "onStart triggered: MainFeed")
 
-        pagerAdapter = MainPagerAdapter(supportFragmentManager)
+        pagerAdapter = MainPagerAdapter(supportFragmentManager, lifecycle)
         viewPager.adapter = pagerAdapter
         viewPager.currentItem = 1
     }

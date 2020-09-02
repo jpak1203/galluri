@@ -12,32 +12,35 @@ import com.google.firebase.auth.FirebaseAuth
 class SettingsFragment : Fragment() {
 
     private lateinit var auth: FirebaseAuth
-
+    lateinit var logOutButton: Button
 
     //todo: Database Implementation
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-
         auth = FirebaseAuth.getInstance()
 
         // Inflate the layout for this fragment
         val rootView = inflater.inflate(R.layout.fragment_setting, container, false)
-
-        val logOut = rootView.findViewById<Button>(R.id.logout_button)
-        logOut.setOnClickListener {
-            signOut()
-        }
+        logOutButton = rootView.findViewById(R.id.logout_button)
 
         return rootView
     }
 
-    private fun signOut() {
-        FirebaseAuth.getInstance().signOut()
+    override fun onStart() {
+        super.onStart()
 
-        var intent = Intent(context, Login::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-        startActivity(intent)
-        this.activity!!.finish()
+        signOut()
+    }
+
+    private fun signOut() {
+        logOutButton.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
+
+            var intent = Intent(context, Login::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
+            this.activity!!.finish()
+        }
     }
 
     companion object {

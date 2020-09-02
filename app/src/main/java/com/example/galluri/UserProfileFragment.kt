@@ -11,6 +11,11 @@ import androidx.recyclerview.widget.RecyclerView
 
 class UserProfileFragment : Fragment() {
 
+    lateinit var gridViewButton: ImageButton
+    lateinit var zineViewButton: ImageButton
+    lateinit var starViewButton: ImageButton
+    lateinit var subsViewButton: ImageButton
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
@@ -20,17 +25,17 @@ class UserProfileFragment : Fragment() {
 
         //todo: Buttons for other views
         //todo: ability to create new zine
-        val gridView = rootView.findViewById<ImageButton>(R.id.gridView)
-        val zineView = rootView.findViewById<ImageButton>(R.id.zineView)
-        val starView = rootView.findViewById<ImageButton>(R.id.starView)
-        val subsView = rootView.findViewById<ImageButton>(R.id.subsView)
+        gridViewButton = rootView.findViewById(R.id.gridView)
+        zineViewButton = rootView.findViewById(R.id.zineView)
+        starViewButton = rootView.findViewById(R.id.starView)
+        subsViewButton = rootView.findViewById(R.id.subsView)
 
         val buttonWidth = resources.displayMetrics.widthPixels/4
 
-        gridView.layoutParams.width = buttonWidth
-        zineView.layoutParams.width = buttonWidth
-        starView.layoutParams.width = buttonWidth
-        subsView.layoutParams.width = buttonWidth
+        gridViewButton.layoutParams.width = buttonWidth
+        zineViewButton.layoutParams.width = buttonWidth
+        starViewButton.layoutParams.width = buttonWidth
+        subsViewButton.layoutParams.width = buttonWidth
 
         val layoutManager = GridLayoutManager(activity, 3)
         recyclerView.layoutManager = layoutManager
