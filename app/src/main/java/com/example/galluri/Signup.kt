@@ -27,13 +27,6 @@ class Signup : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var db: FirebaseDatabase
 
-    lateinit var emailTextView: TextView
-    lateinit var passwordTextView: TextView
-    lateinit var confirmTextView: TextView
-    lateinit var emailSignUpButton: Button
-    lateinit var loginLink: TextView
-    lateinit var termsLink: TextView
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d("Page", "onCreate triggered: Signup")
@@ -47,27 +40,24 @@ class Signup : AppCompatActivity() {
         val currentUser = auth.currentUser
         if (currentUser != null) updateUI(currentUser)
 
-        setContentView(R.layout.activity_signup)
+        else {
+            setContentView(R.layout.activity_signup)
 
-        emailTextView = findViewById(R.id.email_signup_input)
-        passwordTextView = findViewById(R.id.password_signup_input)
-        confirmTextView = findViewById(R.id.confirmpassword_signup_input)
-        emailSignUpButton = findViewById(R.id.complete_signup)
-        loginLink = findViewById(R.id.login_link)
-        termsLink = findViewById(R.id.terms_link)
-    }
+            val emailTextView: TextView = findViewById(R.id.email_signup_input)
+            val passwordTextView: TextView = findViewById(R.id.password_signup_input)
+            val confirmTextView: TextView = findViewById(R.id.confirmpassword_signup_input)
+            val emailSignUpButton: Button = findViewById(R.id.complete_signup)
+            val loginLink: TextView = findViewById(R.id.login_link)
+            val termsLink: TextView = findViewById(R.id.terms_link)
 
-    override fun onStart() {
-        super.onStart()
-        Log.d("Page", "onStart triggered: Signup")
+            emailSignUpButton.setTextColor(Color.parseColor("#BFB5B5B5"))
+            emailSignUpButton.background.alpha = 150
+            termsLink.paintFlags = termsLink.paintFlags or Paint.UNDERLINE_TEXT_FLAG
 
-        emailSignUpButton.setTextColor(Color.parseColor("#BFB5B5B5"))
-        emailSignUpButton.background.alpha = 150
-        termsLink.paintFlags = termsLink.paintFlags or Paint.UNDERLINE_TEXT_FLAG
-
-        confirmPassword()
-        submitSignUp()
-        loginClick()
+            confirmPassword(emailTextView, passwordTextView, confirmTextView, emailSignUpButton)
+            submitSignUp(emailTextView, passwordTextView, confirmTextView, emailSignUpButton)
+            loginClick(loginLink)
+        }
     }
 
     private fun updateUI(currentUser : FirebaseUser) {
@@ -96,13 +86,13 @@ class Signup : AppCompatActivity() {
         })
     }
 
-    private fun submitSignUp() {
+    private fun submitSignUp(emailTextView: TextView, passwordTextView: TextView, confirmTextView: TextView, emailSignUpButton: Button) {
         emailSignUpButton.setOnClickListener {
-            createAccount()
+            createAccount(emailTextView, passwordTextView, confirmTextView)
         }
     }
 
-    private fun loginClick() {
+    private fun loginClick(loginLink: TextView) {
         loginLink.setOnClickListener {
             val intent = Intent(this@Signup, Login::class.java)
             startActivity(intent)
@@ -110,8 +100,8 @@ class Signup : AppCompatActivity() {
         }
     }
 
-    private fun createAccount() {
-        if (!validateForm()) return
+    private fun createAccount(emailTextView: TextView, passwordTextView: TextView, confirmTextView: TextView) {
+        if (!validateForm(emailTextView, passwordTextView, confirmTextView)) return
 
         val email = emailTextView.text.toString()
         val password = passwordTextView.text.toString()
@@ -132,7 +122,7 @@ class Signup : AppCompatActivity() {
         }
     }
 
-    private fun validateForm(): Boolean {
+    private fun validateForm(emailTextView: TextView, passwordTextView: TextView, confirmTextView: TextView): Boolean {
         var valid = true
 
         if (TextUtils.isEmpty(emailTextView.text)) {
@@ -161,7 +151,7 @@ class Signup : AppCompatActivity() {
     }
 
 
-    private fun confirmPassword() {
+    private fun confirmPassword(emailTextView: TextView, passwordTextView: TextView, confirmTextView: TextView, emailSignUpButton: Button) {
         confirmTextView.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
 
@@ -188,7 +178,7 @@ class Signup : AppCompatActivity() {
 
         confirmTextView.setOnKeyListener (View.OnKeyListener { _, keyCode, event ->
             if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP) {
-                createAccount()
+                createAccount(emailTextView, passwordTextView, confirmTextView)
                 return@OnKeyListener true
             }
             false

@@ -35,9 +35,12 @@ class Login : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         db = FirebaseDatabase.getInstance()
 
+        emailTextView  = findViewById(R.id.email_login_input)
         passwordTextView = findViewById(R.id.password_login_input)
+        invalidTextView = findViewById(R.id.invalid_login)
         loginButton = findViewById(R.id.complete_login)
         termsLink = findViewById(R.id.terms_link)
+        signUpLink = findViewById(R.id.signup_link)
     }
 
     override fun onStart() {
@@ -53,29 +56,14 @@ class Login : AppCompatActivity() {
 
     private fun loginClick() {
         loginButton.setOnClickListener {
-            val authTask = auth.signInWithEmailAndPassword(emailTextView.text.toString(), passwordTextView.text.toString())
-            authTask.addOnCompleteListener(this) { task ->
-                Log.d("Authentication", this.toString())
-                if (task.isSuccessful) {
-                    Log.d("Authentication", "Login success")
-
-                    //TODO: continue making fail-safe: username does not exist in db due to backend deletion but has savedState in application
-                    checkUsername(auth.currentUser!!.uid)
-
-                } else {
-                    Log.d("Authentication", "Login fail")
-                    invalidTextView.visibility = View.VISIBLE
-                    emailTextView.setBackgroundResource(R.drawable.credential_input_fail)
-                    passwordTextView.setBackgroundResource(R.drawable.credential_input_fail)
-                }
-            }
+            login()
         }
     }
 
     private fun passwordSubmit() {
         passwordTextView.setOnKeyListener (View.OnKeyListener {_, keyCode, event ->
             if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP) {
-                loginClick()
+                login()
                 return@OnKeyListener true
             }
             false
@@ -87,6 +75,25 @@ class Login : AppCompatActivity() {
             val intent = Intent(this@Login, Signup::class.java)
             startActivity(intent)
             finish()
+        }
+    }
+
+    private fun login() {
+        val authTask = auth.signInWithEmailAndPassword(emailTextView.text.toString(), passwordTextView.text.toString())
+        authTask.addOnCompleteListener(this) { task ->
+            Log.d("Authentication", this.toString())
+            if (task.isSuccessful) {
+                Log.d("Authentication", "Login success")
+
+                //TODO: continue making fail-safe: username does not exist in db due to backend deletion but has savedState in application
+                checkUsername(auth.currentUser!!.uid)
+
+            } else {
+                Log.d("Authentication", "Login fail")
+                invalidTextView.visibility = View.VISIBLE
+                emailTextView.setBackgroundResource(R.drawable.credential_input_fail)
+                passwordTextView.setBackgroundResource(R.drawable.credential_input_fail)
+            }
         }
     }
 

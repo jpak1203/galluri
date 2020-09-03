@@ -13,52 +13,16 @@
         android:layout_height="match_parent"
         tools:context=".MainFeed">
 
-        <EditText
-            android:id="@+id/title_text"
-            android:layout_width="0dp"
-            android:layout_height="75dp"
-            android:background="@null"
-            android:gravity="center"
-            android:hint="Click to add title..."
-            android:maxLines="1"
-            android:singleLine="true"
-            android:textColor="#7FA9BA"
+        <ImageView
+            android:id="@+id/new_post_image"
+            android:layout_width="wrap_content"
+            android:layout_height="400dp"
+            android:background="#757575"
+            android:contentDescription="new post image"
+            android:src="@drawable/dda77bdc532ea07cfb4bb1698446e6a8653df0d5"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/image_add_container" />
-
-        <EditText
-            android:id="@+id/description_text"
-            android:layout_width="0dp"
-            android:layout_height="200dp"
-            android:background="#E5E5E5"
-            android:gravity="center"
-            android:hint="Click to add description..."
-            android:textColor="#7FA9BA"
-            android:scrollbars="vertical"
-            android:maxLength="250"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/title_text"
-            tools:text="Click to add description..." />
-
-        <EditText
-            android:id="@+id/allure_text"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="@null"
-            android:gravity="center"
-            android:hint="Click to add allures..."
-            android:lines="1"
-            android:singleLine="true"
-            android:textColor="#7FA9BA"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/description_text"
-            tools:text="Click to add allures..." />
+            app:layout_constraintTop_toBottomOf="@+id/navbar" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/to_right_main_activity"
@@ -72,6 +36,7 @@
 
             <ImageView
                 android:id="@+id/right_arrow"
+                android:contentDescription="right arrow"
                 android:layout_width="15dp"
                 android:layout_height="20dp"
                 android:layout_marginTop="5dp"
@@ -83,6 +48,7 @@
 
             <ImageView
                 android:id="@+id/to_main_feed"
+                android:contentDescription="main feed"
                 android:layout_width="18dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="3dp"
@@ -108,6 +74,7 @@
 
             <ImageView
                 android:id="@+id/galluri_icon"
+                android:contentDescription="galluri icon"
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:layout_marginStart="15dp"
@@ -135,99 +102,32 @@
                 app:layout_constraintStart_toEndOf="@+id/galluri_icon"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/search_icon"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="8dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/message_icon"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_search_icon" />
-
-            <ImageView
-                android:id="@+id/message_icon"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="8dp"
+            <TextView
+                android:id="@+id/share_link"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:fontFamily="@font/helveticaneue_bold"
+                android:text="Share"
+                android:textColor="@color/colorAccent"
+                android:textSize="14sp"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_mail_icon" />
+                app:layout_constraintTop_toTopOf="parent" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/image_add_container"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/photo_grid"
             android:layout_width="0dp"
-            android:layout_height="225dp"
-            android:background="#114357"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/navbar">
-
-            <ImageButton
-                android:id="@+id/add_image"
-                android:layout_width="125dp"
-                android:layout_height="125dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="8dp"
-                android:adjustViewBounds="true"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_plus_icon" />
-
-            <ImageButton
-                android:id="@+id/upload_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="8dp"
-                android:padding="7dp"
-                android:visibility="gone"
-                android:background="@drawable/round_button"
-                android:src="@android:drawable/ic_menu_upload"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/add_image"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageButton
-                android:id="@+id/cancel_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="8dp"
-                android:background="@drawable/round_button"
-                android:padding="7dp"
-                android:visibility="gone"
-                android:src="@android:drawable/ic_menu_close_clear_cancel"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/add_image"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_constraintTop_toBottomOf="@+id/new_post_image" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

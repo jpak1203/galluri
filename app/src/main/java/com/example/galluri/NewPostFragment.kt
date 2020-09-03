@@ -1,143 +1,59 @@
 package com.example.galluri
 
-import android.annotation.SuppressLint
-import android.app.Activity
-import android.content.Intent
-import android.net.Uri
+import android.database.Cursor
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
-import android.view.KeyEvent
-import android.view.KeyEvent.KEYCODE_ENTER
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
-import android.widget.ImageButton
+import android.widget.GridView
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.fragment.app.Fragment
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
-import java.io.IOException
-import java.util.*
+import androidx.fragment.app.FragmentActivity
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 
 class NewPostFragment : Fragment() {
 
-    //global variables
-    private val PICK_IMAGE = 1
-    private var filePath: Uri? = null
-    private var addImage: ImageButton? = null
+    lateinit var shareLink: TextView
+    lateinit var newPostImage: ImageView
 
-    private var uploadButton: ImageButton? = null
-    private var cancelButton: ImageButton? = null
 
-    //Firebase
-    var storage: FirebaseStorage? = null
-    var storageReference: StorageReference? = null
-
-    //todo: Database Implementation
-    //todo: Upload picture and update placeholder
-    //todo: Fix text-box appearance when creating title and description
-    @SuppressLint("SetTextI18n")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         val rootView = inflater.inflate(R.layout.fragment_new_post, container, false)
+        val gridView = rootView.findViewById<RecyclerView>(R.id.photo_grid)
 
-        // Text input for new post
-        val editText = rootView.findViewById<EditText>(R.id.description_text)
-        editText.setOnKeyListener { v, keyCode, event ->
-            // if enter is pressed start calculating
-            if (keyCode == KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP) {
+        shareLink = rootView.findViewById(R.id.share_link)
+        newPostImage = rootView.findViewById(R.id.new_post_image)
 
-                // get EditText text
-                val text = (v as EditText).text.toString()
-
-                // find how many rows it contains
-                val editTextRowCount = text.split("\\n".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray().size
-
-                Log.d("Row", editTextRowCount.toString())
-                // user has input more than limited - lets do something
-                // about that
-                if (editTextRowCount >= 25) {
-
-                    // find the last break
-                    val lastBreakIndex = text.lastIndexOf("\n")
-
-                    // compose new text
-                    val newText = text.substring(0, lastBreakIndex)
-
-                    // add new text - delete old one and append new one
-                    // (append because I want the cursor to be at the end)
-                    v.setText("")
-                    v.append(newText)
-
-                }
-            }
-
-            false
-        }
-
-        // Image input for new post
-        storage = FirebaseStorage.getInstance()
-        storageReference = storage?.reference
-
-        addImage = rootView.findViewById<ImageButton>(R.id.add_image)
-        uploadButton = rootView.findViewById<ImageButton>(R.id.upload_button)
-        cancelButton = rootView.findViewById<ImageButton>(R.id.cancel_button)
-
-        addImage?.setOnClickListener {
-            chooseImage()
-        }
-
-        uploadButton?.setOnClickListener {
-            uploadImage()
-        }
+        val layoutManager = GridLayoutManager(activity, 4)
+        gridView.layoutManager = layoutManager
+        gridView.adapter = NewPostImageAdapter(fetchGalleryImages(activity))
 
         return rootView
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data);
+    fun fetchGalleryImages(context: FragmentActivity?): ArrayList<String>? {
+        val uri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+        val projection = arrayOf(MediaStore.Images.Media._ID,
+                MediaStore.Images.Media.BUCKET_ID,
+                MediaStore.Images.Media.BUCKET_DISPLAY_NAME)
+        val cursor = context?.contentResolver?.query(uri, projection, null, null, MediaStore.Images.Media.DATE_ADDED + " DESC")
 
-        if (requestCode == PICK_IMAGE && resultCode == Activity.RESULT_OK) {
-
-            filePath = data?.data
-            try {
-                val bitmap = MediaStore.Images.Media.getBitmap(context?.contentResolver, filePath)
-                addImage?.background = null
-                addImage?.setImageBitmap(bitmap)
-            } catch (e: IOException) {
-                e.printStackTrace()
+        val ids = arrayListOf<String>()
+        if (cursor != null) {
+            while (cursor.moveToNext()) {
+                val columnIndex = cursor.getColumnIndex(MediaStore.Images.Media._ID)
+                ids.add(cursor.getString(columnIndex))
             }
-
-
-            uploadButton?.visibility = ImageButton.VISIBLE
-            cancelButton?.visibility = ImageButton.VISIBLE
         }
-    }
+        cursor?.close()
 
-    private fun chooseImage() {
-        val intent = Intent()
-        intent.type = "image/*"
-        intent.action = Intent.ACTION_GET_CONTENT
-        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE)
-    }
-
-    private fun uploadImage() {
-
-        if (filePath != null) {
-            val ref = storageReference?.child("images/" + UUID.randomUUID().toString())
-
-            //todo: add notification on upload progress
-            ref?.putFile(filePath!!)
-                    ?.addOnSuccessListener {
-                    }
-                    ?.addOnFailureListener { e ->
-                    }
-                    ?.addOnProgressListener { taskSnapshot ->
-                    }
-        }
+        return ids
     }
 
     companion object {

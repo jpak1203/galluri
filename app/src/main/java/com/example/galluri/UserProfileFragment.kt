@@ -1,13 +1,20 @@
 package com.example.galluri
 
+import android.Manifest
+import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+
 
 class UserProfileFragment : Fragment() {
 
@@ -39,7 +46,7 @@ class UserProfileFragment : Fragment() {
 
         val layoutManager = GridLayoutManager(activity, 3)
         recyclerView.layoutManager = layoutManager
-        recyclerView.adapter = GridAdapter()
+        recyclerView.adapter = ProfileGridAdapter()
         return rootView
     }
 
