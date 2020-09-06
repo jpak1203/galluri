@@ -36,14 +36,14 @@ class FeedAdapter : RecyclerView.Adapter<PostViewHolder>() {
 
         holder.v.username_header.text = "wavycolde"
         holder.v.post_username.text = "wavycolde"
-        holder.v.post_title.setText(descs)
-        holder.v.post_date.setText(dates)
+        holder.v.title_input.text = descs
+        holder.v.post_date.text = dates
         holder.v.post_image.setImageResource(imgs)
         holder.v.propic_header.setImageResource(R.drawable.dda77bdc532ea07cfb4bb1698446e6a8653df0d5)
         holder.v.propic_description.setImageResource(R.drawable.dda77bdc532ea07cfb4bb1698446e6a8653df0d5)
 
-        holder.v.post_title?.setOnClickListener {
-            var intent = Intent(holder.itemView.context, PostDetails::class.java)
+        holder.v.title_input?.setOnClickListener {
+            val intent = Intent(holder.itemView.context, PostDetails::class.java)
             intent.putExtra("username", "wavycolde")
             intent.putExtra("title", descs)
             intent.putExtra("date", dates)
@@ -51,7 +51,7 @@ class FeedAdapter : RecyclerView.Adapter<PostViewHolder>() {
             intent.putExtra("image", imgs)
             intent.putExtra("propic", R.drawable.dda77bdc532ea07cfb4bb1698446e6a8653df0d5)
             holder.itemView.context.startActivity(intent)
-            Log.d("POST", holder.v.post_title.text.toString())
+            Log.d("POST", holder.v.title_input.text.toString())
         }
     }
 }

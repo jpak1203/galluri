@@ -23,20 +23,24 @@ class PostDetails : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_post_details)
 
-        var username = intent.extras.getString("username")
-        var title = intent.extras.getString("title")
-        var date = intent.extras.getString("date")
-        var image = intent.extras.getInt("image")
-        var propic = intent.extras.getInt("propic")
+        val username = intent.extras?.getString("username")
+        val title = intent.extras?.getString("title")
+        val date = intent.extras?.getString("date")
+        val image = intent.extras?.getInt("image")
+        val propic = intent.extras?.getInt("propic")
 
         findViewById<TextView>(R.id.username_header).setText(username)
-        findViewById<TextView>(R.id.post_title).setText(title)
+        findViewById<TextView>(R.id.title_input).setText(title)
         findViewById<TextView>(R.id.post_date).setText(date)
-        findViewById<TextView>(R.id.post_description).setText("test description")
-        findViewById<ImageView>(R.id.post_image).setImageResource(image)
-        findViewById<ImageView>(R.id.propic_header).setImageResource(propic)
+        findViewById<TextView>(R.id.description_input).text = "test description"
+        if (image != null) {
+            findViewById<ImageView>(R.id.post_image).setImageResource(image)
+        }
+        if (propic != null) {
+            findViewById<ImageView>(R.id.propic_header).setImageResource(propic)
+        }
 
-        var view = findViewById<ScrollView>(R.id.details_scroller)
+        val view = findViewById<ScrollView>(R.id.details_scroller)
         view.setOnTouchListener { _ , event -> onTouchEvent(event) }
 
     }
@@ -55,12 +59,12 @@ class PostDetails : AppCompatActivity() {
                 if (x1 < x2 && (x2-x1) > 500) {
                     // Check if we're running on Android 5.0 or higher
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                        var intent = Intent(this@PostDetails, MainFeed::class.java)
+                        val intent = Intent(this@PostDetails, MainFeed::class.java)
                         startActivity(intent)
                         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
                     } else {
                         // Swap without transition
-                        var intent = Intent(this@PostDetails, MainFeed::class.java)
+                        val intent = Intent(this@PostDetails, MainFeed::class.java)
                         startActivity(intent)
                     }
                 }

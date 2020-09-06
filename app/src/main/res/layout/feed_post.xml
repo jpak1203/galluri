@@ -7,6 +7,20 @@
     android:layout_height="wrap_content">
 
 
+    <ImageView
+        android:id="@+id/post_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:contentDescription="post image"
+        android:maxHeight="500dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/user_heading_layout"
+        app:srcCompat="@drawable/colde" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/user_heading_layout"
         android:layout_width="0dp"
@@ -17,6 +31,7 @@
 
         <ImageView
             android:id="@+id/propic_header"
+            android:contentDescription="profile picture header"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:adjustViewBounds="true"
@@ -43,19 +58,6 @@
             app:layout_constraintVertical_bias="0.6" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ImageView
-        android:id="@+id/post_image"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:maxHeight="500dp"
-        android:adjustViewBounds="true"
-        android:scaleType="centerCrop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/user_heading_layout"
-        app:srcCompat="@drawable/colde" />
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/description_layout"
         android:layout_width="0dp"
@@ -67,6 +69,7 @@
 
         <ImageView
             android:id="@+id/propic_description"
+            android:contentDescription="profile picture description"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_marginStart="8dp"
@@ -83,6 +86,7 @@
 
         <ImageView
             android:id="@+id/star_description"
+            android:contentDescription="star description"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginTop="8dp"
@@ -121,7 +125,7 @@
                 tools:layout_editor_absoluteY="17dp" />
 
             <TextView
-                android:id="@+id/post_title"
+                android:id="@+id/title_input"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -140,7 +144,7 @@
                 android:layout_marginLeft="5dp"
                 android:text="date"
                 android:textSize="10sp"
-                app:layout_constraintStart_toEndOf="@+id/post_title"
+                app:layout_constraintStart_toEndOf="@+id/title_input"
                 tools:layout_editor_absoluteY="19dp" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

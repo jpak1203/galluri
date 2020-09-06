@@ -16,11 +16,13 @@
 
         <ImageView
             android:id="@+id/post_grid_cell"
+            android:contentDescription="grid cell for post"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="2dp"
             android:adjustViewBounds="false"
             android:scaleType="centerCrop"
+            android:foreground="@drawable/item_highlighted"
             app:srcCompat="@drawable/images" />
 
     </LinearLayout>
